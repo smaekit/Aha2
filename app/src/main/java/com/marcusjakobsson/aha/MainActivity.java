@@ -1,9 +1,11 @@
 package com.marcusjakobsson.aha;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     ImageButton btn_Microphone;
     RelativeLayout relativeLayout_main;
     EditText editText_enterName;
+    ImageButton button_ok;
+    ImageButton button_erase;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -27,8 +31,18 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         relativeLayout_main.setOnClickListener(this);
         editText_enterName = (EditText)findViewById(R.id.editText_EnterName);
         editText_enterName.setOnKeyListener(this);
+        button_ok = (ImageButton)findViewById(R.id.button_ok);
+        button_erase = (ImageButton)findViewById(R.id.button_cross);
+
     }
 
+
+    public void button_OK(View view) //Knappen next skickar en till nästa vy
+    {
+        Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
+        intent.putExtra("name",editText_enterName.getText().toString()); //skickar med namnet till nästa vy
+        startActivity(intent);
+    }
 
     public void micButton(View view)
     {
