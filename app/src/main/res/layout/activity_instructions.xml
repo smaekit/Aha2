@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.marcusjakobsson.aha.instructionsActivity">
 
+    <TextView
+        android:id="@+id/name_test"
+        android:layout_width="784dp"
+        android:layout_height="1127dp"
+        android:textSize="50sp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
 </android.support.constraint.ConstraintLayout>

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
     public void button_OK(View view) //Knappen next skickar en till nästa vy
     {
+        Log.i("OK","OK pressed");
         Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
         intent.putExtra("name",editText_enterName.getText().toString()); //skickar med namnet till nästa vy
         startActivity(intent);
@@ -46,8 +47,14 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
     public void micButton(View view)
     {
-        //HEJSAN!!
         Log.i("Mic", "Mic pressed");
+    }
+
+
+    public void button_erase(View view)
+    {
+        Log.i("Erase", "Erase pressed");
+        editText_enterName.setText(null);
     }
 
     @Override
