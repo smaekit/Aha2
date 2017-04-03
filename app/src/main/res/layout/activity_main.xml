@@ -37,4 +37,29 @@
         android:contentDescription="Microphone button"
         android:onClick="micButton"
         app:srcCompat="@drawable/microphone" />
+
+    <ImageButton
+        android:id="@+id/button_cross"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText"
+        android:layout_alignTop="@+id/button_mic"
+        android:layout_marginLeft="55dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="26dp"
+        android:background="@null"
+        app:srcCompat="@drawable/cancel" />
+
+    <ImageButton
+        android:id="@+id/button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editText"
+        android:layout_alignRight="@+id/editText"
+        android:layout_alignTop="@+id/button_cross"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:background="@null"
+        app:srcCompat="@drawable/checked" />
 </RelativeLayout>
