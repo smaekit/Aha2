@@ -17,7 +17,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText"
-        android:hint="Skriv in ditt namn..."
+        android:hint="Skriv in ditt namn!"
         android:backgroundTint="@color/colorPrimaryDark"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
