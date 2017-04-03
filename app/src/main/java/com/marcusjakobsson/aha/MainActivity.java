@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     }
 
     @Override
-    public boolean onKey(View v, int keyCode, KeyEvent event)
+    public boolean onKey(View view, int keyCode, KeyEvent event)
     {
 
         if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) //Lyssnar efter enter tryck
         {
-            //nextView(view);
+            button_OK(view);  //skickar en till nästa vy
         }
 
         return false;
