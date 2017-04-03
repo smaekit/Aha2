@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void micButton(View view)
     {
+        //HEJSAN!!
         Log.i("Mic", "Mic pressed");
     }
 }
