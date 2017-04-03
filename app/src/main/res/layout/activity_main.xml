@@ -10,8 +10,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.marcusjakobsson.aha.MainActivity">
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:hint="Skriv in ditt namn..."
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textSize="70sp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
 </RelativeLayout>
