@@ -11,7 +11,8 @@
     tools:context="com.marcusjakobsson.aha.MainActivity">
 
     <TextView
-        android:text="Välj en tid då du vaknar på morgonen"
+        android:text="@string/wakeUpTime"
+        android:contentDescription="@string/wakeUpTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

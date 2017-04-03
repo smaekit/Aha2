@@ -1,7 +1,9 @@
 package com.marcusjakobsson.aha;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,21 +17,25 @@ import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
+    protected static final int RESULT_SPEECH = 1;
     //Variabler som behövs globalt
-    ImageButton btn_Microphone;
+    ImageButton btn_Speak;
     RelativeLayout relativeLayout_main;
     EditText editText_enterName;
     ImageButton button_ok;
     ImageButton button_erase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_Microphone = (ImageButton) findViewById(R.id.button_mic);
+        btn_Speak = (ImageButton) findViewById(R.id.button_mic);
         relativeLayout_main = (RelativeLayout)findViewById(R.id.relativeLayout_main);
         relativeLayout_main.setOnClickListener(this);
         editText_enterName = (EditText)findViewById(R.id.editText_EnterName);
@@ -37,10 +43,38 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         button_ok = (ImageButton)findViewById(R.id.button_ok);
         button_erase = (ImageButton)findViewById(R.id.button_cross);
 
+
+        //När mikrofon knappen trycks ner så tillåter den användaren att prata in sitt namn
+        btn_Speak.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                Intent intent = new Intent(
+                        RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "sv-SE");
+
+                try {
+                    startActivityForResult(intent, RESULT_SPEECH);
+                    editText_enterName.setText("");
+                } catch (ActivityNotFoundException a) {
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Hoppsan! Din enhet stödjer inte Tal till Text",
+                            Toast.LENGTH_SHORT);
+                    t.show();
+                }
+            }
+        });
+
     }
 
 
-    public void button_OK(View view) //Knappen next skickar en till nästa vy
+
+    //Verifierar att användaren har skrivit in ett namn och skickar anv till nästa vy
+    public void button_OK(View view)
     {
         if(!editText_enterName.getText().toString().equals(""))
         {
@@ -55,13 +89,10 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
     }
 
-    public void micButton(View view)
-    {
-        Log.i("Mic", "Mic pressed");
-    }
 
 
-    public void button_erase(View view)
+    //Rensar inputFönstret för namnrutan
+    public void button_erase_name(View view)
     {
         Log.i("Erase", "Erase pressed");
         editText_enterName.setText(null);
@@ -81,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         return false;
     }
 
+
+
     @Override
     public void onClick(View view)
     {
@@ -90,4 +123,27 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0); //Gömmer tangetbordet, 0 är flagga 0.
         }
     }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case RESULT_SPEECH: {
+                if (resultCode == RESULT_OK && null != data) {
+
+                    ArrayList<String> text = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    editText_enterName.setText(text.get(0));
+                }
+                break;
+            }
+
+        }
+    }
 }
+

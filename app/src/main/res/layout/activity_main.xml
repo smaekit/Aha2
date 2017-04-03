@@ -21,7 +21,8 @@
         android:layout_marginRight="50dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:ems="10"
-        android:hint="Skriv in ditt namn!"
+        android:hint="@string/enterName"
+        android:contentDescription="@string/enterName"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="70sp" />
@@ -34,8 +35,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="133dp"
         android:background="@null"
-        android:contentDescription="Microphone button"
-        android:onClick="micButton"
+        android:contentDescription="@string/speak"
         app:srcCompat="@drawable/microphone" />
 
     <ImageButton
@@ -49,7 +49,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="26dp"
         android:background="@null"
-        android:onClick="button_erase"
+        android:onClick="button_erase_name"
         app:srcCompat="@drawable/cancel" />
 
     <ImageButton
