@@ -1,9 +1,11 @@
 package com.marcusjakobsson.aha;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
@@ -39,10 +42,17 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
     public void button_OK(View view) //Knappen next skickar en till nästa vy
     {
-        Log.i("OK","OK pressed");
-        Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
-        intent.putExtra("name",editText_enterName.getText().toString()); //skickar med namnet till nästa vy
-        startActivity(intent);
+        if(!editText_enterName.getText().toString().equals(""))
+        {
+            Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
+            intent.putExtra("name",editText_enterName.getText().toString()); //skickar med namnet till nästa vy
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Var vänlig skriv in ditt namn.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void micButton(View view)
@@ -56,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         Log.i("Erase", "Erase pressed");
         editText_enterName.setText(null);
     }
+
+
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent event)

@@ -28,6 +28,17 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
+
+    <ImageButton
+        android:id="@+id/btn_nextActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/transparent"
+        android:onClick="btn_nextActivity"
+        app:srcCompat="@drawable/checked" />
 </RelativeLayout>
 
 
