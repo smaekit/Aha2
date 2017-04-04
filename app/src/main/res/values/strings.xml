@@ -3,4 +3,6 @@
     <string name="speak" />
     <string name="wakeUpTime">Välj en tid då du vaknar på morgonen</string>
     <string name="enterName">Skriv in ditt namn!</string>
+    <string name="next">Nästa</string>
+    <string name="back">Tillbaka</string>
 </resources>

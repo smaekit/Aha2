@@ -19,7 +19,7 @@ public class instructionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_instructions);
 
 
-        btn_NextActivity = (ImageButton)findViewById(R.id.btn_nextActivity);
+        //btn_NextActivity = (ImageButton)findViewById(R.id.btn_nextActivity);
         Intent intent = getIntent();
         String msg = intent.getStringExtra("name");
         TextView textView =(TextView)findViewById(R.id.name_test);
@@ -30,6 +30,7 @@ public class instructionsActivity extends AppCompatActivity {
 
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(vv);
+        mediaController.setPadding(0,0,0, 570);
         ImageView imageView;
 
 

@@ -20,9 +20,9 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:backgroundTint="@color/colorPrimaryDark"
+        android:contentDescription="@string/enterName"
         android:ems="10"
         android:hint="@string/enterName"
-        android:contentDescription="@string/enterName"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textSize="70sp" />
