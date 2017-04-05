@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.marcusjakobsson.aha">
 
+    <!-- Försöker tillåta användning av diverse uppkopplingstjänster -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,8 +25,12 @@
         </activity>
         <activity
             android:name=".instructionsActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".WakeUpActivity"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".WakeUpActivity" />
+        <activity
+            android:name=".SleepActivity"
+            android:label="@string/title_activity_sleep"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
@@ -22,7 +21,7 @@ public class instructionsActivity extends AppCompatActivity {
         //btn_NextActivity = (ImageButton)findViewById(R.id.btn_nextActivity);
         Intent intent = getIntent();
         String msg = intent.getStringExtra("name");
-        TextView textView =(TextView)findViewById(R.id.name_test);
+        TextView textView =(TextView)findViewById(R.id.message);
         textView.setText("Hej "+msg+ "!\nhär är en instruktionsvideo, starta den genom att trycka på play");
 
         VideoView vv = (VideoView)findViewById(R.id.videoView);
@@ -31,7 +30,6 @@ public class instructionsActivity extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         mediaController.setAnchorView(vv);
         mediaController.setPadding(0,0,0, 570);
-        ImageView imageView;
 
 
         vv.setMediaController(mediaController);

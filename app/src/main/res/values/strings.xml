@@ -5,4 +5,8 @@
     <string name="enterName">Skriv in ditt namn!</string>
     <string name="next">Nästa</string>
     <string name="back">Tillbaka</string>
+    <string name="title_activity_sleep">SleepActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
