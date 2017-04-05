@@ -58,6 +58,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
                 android:background="@null"
+                android:onClick="button_back"
                 android:text="Tillbaka"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
@@ -72,6 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
                 android:background="@null"
+                android:onClick="button_next"
                 android:text="Nästa"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />

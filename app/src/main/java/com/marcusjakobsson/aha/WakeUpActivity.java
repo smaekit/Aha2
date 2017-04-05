@@ -12,13 +12,16 @@ import java.util.ArrayList;
 
 public class WakeUpActivity extends AppCompatActivity {
 
+    ListView wakeUpTimeTableListView;
+    String wakeuptime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wake_up);
 
         final ArrayList<String> wakeUpTimeTable = new ArrayList<String>();
-        ListView wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
+        wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,wakeUpTimeTable);
 
         wakeUpTimeTable.add("06.00");
@@ -36,14 +39,21 @@ public class WakeUpActivity extends AppCompatActivity {
         wakeUpTimeTable.add("12.00");
         wakeUpTimeTableListView.setAdapter(arrayAdapter);
 
-        wakeUpTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        wakeUpTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                wakeuptime = wakeUpTimeTable.get(position).toString();
 
-//                Intent intent = new Intent(getApplicationContext(),GoToSleepActivity.class);
-//                intent.putExtra("wakeuptime", wakeUpTimeTable.get(position).toString());
-//                startActivity(intent);
             }
         });
+    }
+
+    public void button_next(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(),WakeUpActivity.class);
+                intent.putExtra("wakeuptime", wakeuptime);
+                startActivity(intent);
     }
 }

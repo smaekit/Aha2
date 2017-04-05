@@ -16,7 +16,7 @@ public class SleepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep);
-        buttonNext = (Button) findViewById(R.id.button_b);
+        buttonNext = (Button) findViewById(R.id.button_back);
     }
 
 }

@@ -11,6 +11,7 @@ import android.widget.VideoView;
 
 public class instructionsActivity extends AppCompatActivity {
 
+    String name;
     ImageButton btn_NextActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +21,9 @@ public class instructionsActivity extends AppCompatActivity {
 
         //btn_NextActivity = (ImageButton)findViewById(R.id.btn_nextActivity);
         Intent intent = getIntent();
-        String msg = intent.getStringExtra("name");
+        name = intent.getStringExtra("name");
         TextView textView =(TextView)findViewById(R.id.message);
-        textView.setText("Hej "+msg+ "!\nhär är en instruktionsvideo, starta den genom att trycka på play");
+        textView.setText("Hej "+name+ "!\nhär är en instruktionsvideo, starta den genom att trycka på play");
 
         VideoView vv = (VideoView)findViewById(R.id.videoView);
         vv.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.normal);
@@ -36,9 +37,16 @@ public class instructionsActivity extends AppCompatActivity {
         vv.start();
     }
 
-    public void btn_nextActivity(View view)
+    public void button_next(View view)
     {
         Intent intent = new Intent(getApplicationContext(),WakeUpActivity.class);
+        intent.putExtra("name",name);
+        startActivity(intent);
+    }
+
+    public void button_back(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
     }
 }
