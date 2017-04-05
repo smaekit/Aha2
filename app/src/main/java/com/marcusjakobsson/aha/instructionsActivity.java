@@ -22,7 +22,7 @@ public class instructionsActivity extends AppCompatActivity {
 
 
         //btn_NextActivity = (ImageButton)findViewById(R.id.btn_nextActivity);
-        Intent intent = getIntent();
+        Intent intent = getIntent(); //faf
         //name = intent.getStringExtra("name");
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
