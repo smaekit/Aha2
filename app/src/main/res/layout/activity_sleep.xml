@@ -14,8 +14,8 @@
         android:layout_weight="1">
 
         <TextView
-            android:text="@string/wakeUpTime"
-            android:contentDescription="@string/wakeUpTime"
+            android:text="@string/SleepTime"
+            android:contentDescription="@string/SleepTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -42,7 +42,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
                 android:background="@null"
-                android:text="Tillbaka"
+                android:text="@string/back"
+                android:onClick="button_back"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
             <Space
@@ -56,7 +57,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
                 android:background="@null"
-                android:text="Nästa"
+                android:text="@string/next"
+                android:onClick="button_next"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
         </LinearLayout>

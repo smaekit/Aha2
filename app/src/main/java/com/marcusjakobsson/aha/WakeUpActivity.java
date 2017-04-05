@@ -20,7 +20,7 @@ public class WakeUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wake_up);
 
-        final ArrayList<String> wakeUpTimeTable = new ArrayList<String>();
+        final ArrayList<String> wakeUpTimeTable = new ArrayList<>();
         wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,wakeUpTimeTable);
 
@@ -52,8 +52,14 @@ public class WakeUpActivity extends AppCompatActivity {
 
     public void button_next(View view)
     {
-        Intent intent = new Intent(getApplicationContext(),WakeUpActivity.class);
+        Intent intent = new Intent(getApplicationContext(),SleepActivity.class);
                 intent.putExtra("wakeuptime", wakeuptime);
                 startActivity(intent);
+    }
+
+    public void button_back(View view)
+    {
+        Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
+        startActivity(intent);
     }
 }
