@@ -1,7 +1,9 @@
 package com.marcusjakobsson.aha;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
@@ -78,8 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     {
         if(!editText_enterName.getText().toString().equals(""))
         {
+            //Skapar ett lokalt storage i appen.
+            SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("name", editText_enterName.getText().toString()).apply(); //Sparar permanent i variablen namn
             Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
-            intent.putExtra("name",editText_enterName.getText().toString()); //skickar med namnet till nästa vy
+            //intent.putExtra("name",editText_enterName.getText().toString()); //skickar med namnet till nästa vy
             startActivity(intent);
         }
         else

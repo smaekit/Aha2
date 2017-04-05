@@ -1,6 +1,8 @@
 package com.marcusjakobsson.aha;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +23,9 @@ public class instructionsActivity extends AppCompatActivity {
 
         //btn_NextActivity = (ImageButton)findViewById(R.id.btn_nextActivity);
         Intent intent = getIntent();
-        name = intent.getStringExtra("name");
+        //name = intent.getStringExtra("name");
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         TextView textView =(TextView)findViewById(R.id.message);
         textView.setText("Hej "+name+ "!\nhär är en instruktionsvideo, starta den genom att trycka på play");
 
