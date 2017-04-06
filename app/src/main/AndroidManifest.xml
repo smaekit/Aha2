@@ -30,7 +30,10 @@
         <activity android:name=".WakeUpActivity" />
         <activity
             android:name=".SleepActivity"
-            android:label="@string/title_activity_sleep"></activity>
+            android:label="@string/title_activity_sleep" />
+        <activity
+            android:name=".SummaryActivity"
+            android:label="@string/title_activity_summary"></activity>
     </application>
 
 </manifest>

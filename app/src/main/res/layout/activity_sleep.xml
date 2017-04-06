@@ -56,7 +56,7 @@
                 android:layout_weight=".25"
                 android:background="@null"
                 android:onClick="button_back"
-                android:text="Tillbaka"
+                android:text="@string/back"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
@@ -72,7 +72,7 @@
                 android:layout_weight=".25"
                 android:background="@null"
                 android:onClick="button_next"
-                android:text="Nästa"
+                android:text="@string/next"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
         </LinearLayout>

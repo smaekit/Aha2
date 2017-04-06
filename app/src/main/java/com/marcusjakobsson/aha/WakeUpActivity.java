@@ -1,42 +1,42 @@
 package com.marcusjakobsson.aha;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class WakeUpActivity extends AppCompatActivity {
 
     ListView wakeUpTimeTableListView;
+    Button buttonNext;
     String wakeuptime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wake_up);
+        buttonNext = (Button) findViewById(R.id.button_next);
+        buttonNext.setEnabled(false);
 
-        final ArrayList<String> wakeUpTimeTable = new ArrayList<>();
+        createList();
+    }
+
+    private void createList()
+    {
+        String[] wakeUpTimeTable = {"06.00", "06.30", "07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "11.30", "12.00"};
         wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,R.layout.time_row,R.id.time_text,wakeUpTimeTable);
-
-        wakeUpTimeTable.add("06.00");
-        wakeUpTimeTable.add("06.30");
-        wakeUpTimeTable.add("07.00");
-        wakeUpTimeTable.add("07.30");
-        wakeUpTimeTable.add("08.00");
-        wakeUpTimeTable.add("08.30");
-        wakeUpTimeTable.add("09.00");
-        wakeUpTimeTable.add("09.30");
-        wakeUpTimeTable.add("10.00");
-        wakeUpTimeTable.add("10.30");
-        wakeUpTimeTable.add("11.00");
-        wakeUpTimeTable.add("11.30");
-        wakeUpTimeTable.add("12.00");
+        ArrayAdapter arrayAdapter = new CustomAdapter(this, wakeUpTimeTable);
         wakeUpTimeTableListView.setAdapter(arrayAdapter);
 
         wakeUpTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -44,17 +44,20 @@ public class WakeUpActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                wakeuptime = wakeUpTimeTable.get(position).toString();
-
+                Log.i("Item","Item clicked "+view);
+                wakeuptime = String.valueOf(parent.getItemAtPosition(position));
+                view.setBackgroundColor(getResources().getColor(R.color.colorSelected));
+                buttonNext.setEnabled(true);
             }
         });
     }
 
     public void button_next(View view)
     {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("wakeUpTime", wakeuptime).apply(); //Sparar permanent i variablen wakeUpTime
         Intent intent = new Intent(getApplicationContext(),SleepActivity.class);
-                intent.putExtra("wakeuptime", wakeuptime);
-                startActivity(intent);
+        startActivity(intent);
     }
 
     public void button_back(View view)

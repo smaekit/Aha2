@@ -1,10 +1,13 @@
 package com.marcusjakobsson.aha;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,24 +29,15 @@ public class SleepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep);
         buttonNext = (Button) findViewById(R.id.button_next);
+        buttonNext.setEnabled(false);
 
-        final ArrayList<String> sleepTimeTable = new ArrayList<>();
+        createList();
+    }
+
+    private void createList(){
+        String[] sleepTimeTable = {"17.00", "17.30", "18.00", "18.30", "19.00", "19.30", "20.00", "20.30", "21.00", "20.30", "21.00", "21.30", "22.00"};
         sleepTimeTableListView = (ListView) findViewById(R.id.sleepTimeTableListView);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,R.layout.time_row,R.id.time_text,sleepTimeTable);
-
-        sleepTimeTable.add("17.00");
-        sleepTimeTable.add("17.30");
-        sleepTimeTable.add("18.00");
-        sleepTimeTable.add("18.30");
-        sleepTimeTable.add("19.00");
-        sleepTimeTable.add("19.30");
-        sleepTimeTable.add("20.00");
-        sleepTimeTable.add("20.30");
-        sleepTimeTable.add("21.00");
-        sleepTimeTable.add("21.30");
-        sleepTimeTable.add("22.00");
-        sleepTimeTable.add("22.30");
-        sleepTimeTable.add("23.00");
+        ArrayAdapter arrayAdapter = new CustomAdapter(this, sleepTimeTable);
         sleepTimeTableListView.setAdapter(arrayAdapter);
 
         sleepTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -51,17 +45,20 @@ public class SleepActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                sleepTime = sleepTimeTable.get(position).toString();
-
+                Log.i("Item","Item clicked "+view);
+                sleepTime = String.valueOf(parent.getItemAtPosition(position));
+                view.setBackgroundColor(getResources().getColor(R.color.colorSelected));
+                buttonNext.setEnabled(true);
             }
         });
     }
 
     public void button_next(View view)
     {
-        /*Intent intent = new Intent(getApplicationContext(),WakeUpActivity.class);
-        intent.putExtra("wakeuptime", wakeuptime);
-        startActivity(intent);*/
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        sharedPreferences.edit().putString("sleepTime", sleepTime).apply(); //Sparar permanent i variablen sleepTime
+        Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
+        startActivity(intent);
     }
 
     public void button_back(View view)
