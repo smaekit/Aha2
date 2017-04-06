@@ -23,6 +23,7 @@ public class SleepActivity extends AppCompatActivity {
     ListView sleepTimeTableListView;
     String sleepTime;
     Button buttonNext;
+    View activeRow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +47,21 @@ public class SleepActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Log.i("Item","Item clicked "+view);
+                if(view == activeRow)
+                {
+                    Log.i("Row","Same row clicked "+activeRow);
+                    buttonNext.setEnabled(false);
+                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
+                    activeRow = null;
+                }
+                else
+                {
+                    activeRow = view;
+                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorSelected));
+                    unSelectList(activeRow);
+                    buttonNext.setEnabled(true);
+                }
                 sleepTime = String.valueOf(parent.getItemAtPosition(position));
-                view.setBackgroundColor(getResources().getColor(R.color.colorSelected));
-                buttonNext.setEnabled(true);
             }
         });
     }
@@ -67,4 +80,13 @@ public class SleepActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void unSelectList(View view){
+        int count = sleepTimeTableListView.getChildCount();
+
+        for(int i = 0; i < count; i++){
+            View row = sleepTimeTableListView.getChildAt(i);
+            if(row != view)
+                row.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
+        }
+    }
 }

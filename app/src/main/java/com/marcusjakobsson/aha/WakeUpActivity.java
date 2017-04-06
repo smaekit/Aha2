@@ -3,6 +3,7 @@ package com.marcusjakobsson.aha;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ public class WakeUpActivity extends AppCompatActivity {
     ListView wakeUpTimeTableListView;
     Button buttonNext;
     String wakeuptime;
+    View activeRow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +48,23 @@ public class WakeUpActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Log.i("Item","Item clicked "+view);
+                if(view == activeRow)
+                {
+                    Log.i("Row","Same row clicked "+activeRow);
+                    buttonNext.setEnabled(false);
+                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
+                    activeRow = null;
+                }
+                else
+                {
+                    activeRow = view;
+                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorSelected));
+                    unSelectList(activeRow);
+                    buttonNext.setEnabled(true);
+                }
+
                 wakeuptime = String.valueOf(parent.getItemAtPosition(position));
-                view.setBackgroundColor(getResources().getColor(R.color.colorSelected));
-                buttonNext.setEnabled(true);
+
             }
         });
     }
@@ -64,5 +81,15 @@ public class WakeUpActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
         startActivity(intent);
+    }
+
+    private void unSelectList(View view){
+        int count = wakeUpTimeTableListView.getChildCount();
+
+        for(int i = 0; i < count; i++){
+            View row = wakeUpTimeTableListView.getChildAt(i);
+            if(row != view)
+                row.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
+        }
     }
 }

@@ -3,16 +3,16 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorDefaultRow">
 
     <TextView
         android:id="@+id/time_text"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="TextView"
+        android:text=""
         android:textAlignment="center"
         android:textSize="60sp"
-        android:textStyle="bold"
-        android:background="#A5FFFFFF"/>
+        android:textStyle="bold"/>
 </LinearLayout>
