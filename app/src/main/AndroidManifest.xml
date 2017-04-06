@@ -25,15 +25,21 @@
         </activity>
         <activity
             android:name=".instructionsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".WakeUpActivity" />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WakeUpActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SleepActivity"
-            android:label="@string/title_activity_sleep" />
+            android:label="@string/title_activity_sleep"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SummaryActivity"
-            android:label="@string/title_activity_summary"></activity>
+            android:label="@string/title_activity_summary"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FinalActivity"
+            android:label="@string/title_activity_final"></activity>
     </application>
 
 </manifest>
