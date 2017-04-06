@@ -22,7 +22,7 @@ public class WakeUpActivity extends AppCompatActivity {
 
         final ArrayList<String> wakeUpTimeTable = new ArrayList<>();
         wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,wakeUpTimeTable);
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this,R.layout.time_row,R.id.time_text,wakeUpTimeTable);
 
         wakeUpTimeTable.add("06.00");
         wakeUpTimeTable.add("06.30");

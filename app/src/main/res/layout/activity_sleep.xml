@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.marcusjakobsson.aha.SleepActivity">
+    tools:context="com.marcusjakobsson.aha.SleepActivity"
+    android:background="@drawable/evening_background">
 
     <RelativeLayout
         android:id="@+id/content"
@@ -14,15 +15,27 @@
         android:layout_weight="1">
 
         <TextView
-            android:text="@string/SleepTime"
-            android:contentDescription="@string/SleepTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
             android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="center"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorDisco"
+            android:contentDescription="@string/SleepTime"
+            android:text="@string/SleepTime"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
             android:textSize="50sp"
-            android:textAlignment="center" />
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/sleepTimeTableListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:animateLayoutChanges="false"
+            android:textAlignment="center"/>
 
     </RelativeLayout>
 
@@ -42,14 +55,15 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
                 android:background="@null"
-                android:text="@string/back"
                 android:onClick="button_back"
+                android:text="Tillbaka"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".75"/>
+                android:layout_weight=".75" />
 
             <Button
                 android:id="@+id/button_next"
@@ -57,8 +71,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
                 android:background="@null"
-                android:text="@string/next"
                 android:onClick="button_next"
+                android:text="Nästa"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
         </LinearLayout>
