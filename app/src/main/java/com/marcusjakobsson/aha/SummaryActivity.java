@@ -36,9 +36,11 @@ public class SummaryActivity extends AppCompatActivity {
         sleepTime.setText(sharedPreferences.getString("sleepTime",""));
     }
 
-    public void button_confirm(View view)
+    public void button_next(View view)
     {
         //TODO: När denna knapp har klickats skall samtlig sparad data i SharedPreferences lagras
+        Intent intent = new Intent(getApplicationContext(),FinalActivity.class);
+        startActivity(intent);
     }
 
     public void button_back(View view)

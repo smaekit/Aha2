@@ -14,7 +14,8 @@ import android.widget.VideoView;
 public class instructionsActivity extends AppCompatActivity {
 
     String name;
-    ImageButton btn_NextActivity;
+    VideoView videoV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,23 +23,24 @@ public class instructionsActivity extends AppCompatActivity {
 
 
         //btn_NextActivity = (ImageButton)findViewById(R.id.btn_nextActivity);
-        Intent intent = getIntent(); //faf
+        //Intent intent = getIntent(); //faf
         //name = intent.getStringExtra("name");
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         TextView textView =(TextView)findViewById(R.id.message);
         textView.setText("Hej "+name+ "!\nhär är en instruktionsvideo, starta den genom att trycka på play");
 
-        VideoView vv = (VideoView)findViewById(R.id.videoView);
-        vv.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.normal);
+        startVideo();
+    }
+
+    private void startVideo(){
+        videoV = (VideoView)findViewById(R.id.videoView);
+        videoV.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.normal);
 
         MediaController mediaController = new MediaController(this);
-        mediaController.setAnchorView(vv);
-        mediaController.setPadding(0,0,0, 570);
-
-
-        vv.setMediaController(mediaController);
-        vv.start();
+        videoV.setMediaController(mediaController);
+        mediaController.setAnchorView(videoV);
+        videoV.start();
     }
 
     public void button_next(View view)

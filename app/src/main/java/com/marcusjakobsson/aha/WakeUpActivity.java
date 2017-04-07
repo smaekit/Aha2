@@ -13,8 +13,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,7 @@ public class WakeUpActivity extends AppCompatActivity {
     Button buttonNext;
     String wakeuptime;
     View activeRow;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +35,21 @@ public class WakeUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wake_up);
         buttonNext = (Button) findViewById(R.id.button_next);
         buttonNext.setEnabled(false);
+        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
+        activeRow = null;
+        Log.i("WakeUp", "Creates...");
 
         createList();
     }
 
     private void createList()
     {
-        String[] wakeUpTimeTable = {"06.00", "06.30", "07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "11.30", "12.00"};
-        wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
+        final String[] wakeUpTimeTable = {"06.00", "06.30", "07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "11.30", "12.00"};
+
         ArrayAdapter arrayAdapter = new CustomAdapter(this, wakeUpTimeTable);
         wakeUpTimeTableListView.setAdapter(arrayAdapter);
+
 
         wakeUpTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -48,7 +57,7 @@ public class WakeUpActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Log.i("Item","Item clicked "+view);
-                if(view == activeRow)
+                if(view == activeRow) //Villkor för att avmarkera en rad om man trycker på den två gånger
                 {
                     Log.i("Row","Same row clicked "+activeRow);
                     buttonNext.setEnabled(false);
@@ -66,12 +75,12 @@ public class WakeUpActivity extends AppCompatActivity {
                 wakeuptime = String.valueOf(parent.getItemAtPosition(position));
 
             }
+
         });
     }
 
     public void button_next(View view)
     {
-        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
         sharedPreferences.edit().putString("wakeUpTime", wakeuptime).apply(); //Sparar permanent i variablen wakeUpTime
         Intent intent = new Intent(getApplicationContext(),SleepActivity.class);
         startActivity(intent);
@@ -85,6 +94,7 @@ public class WakeUpActivity extends AppCompatActivity {
 
     private void unSelectList(View view){
         int count = wakeUpTimeTableListView.getChildCount();
+        Log.i("Count", String.valueOf(count));
 
         for(int i = 0; i < count; i++){
             View row = wakeUpTimeTableListView.getChildAt(i);

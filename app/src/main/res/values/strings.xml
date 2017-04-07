@@ -12,9 +12,8 @@
     <string name="SleepTime">Välj en tid då du går och lägger dig</string>
     <string name="title_activity_summary">SummaryActivity</string>
     <string name="summary">Detta är din sammanfattning:</string>
-    <string name="name">Namn:</string>
-    <string name="wakeUp">Vaknar:</string>
-    <string name="sleep">Sover:</string>
-    <string name="confirm">Bekräfta</string>
+    <string name="name">NAMN:</string>
+    <string name="wakeUp">VAKNAR:</string>
+    <string name="sleep">SOVER:</string>
     <string name="title_activity_final">FinalActivity</string>
 </resources>
