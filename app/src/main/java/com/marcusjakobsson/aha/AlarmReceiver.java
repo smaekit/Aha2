@@ -12,14 +12,19 @@ import android.support.v4.content.WakefulBroadcastReceiver;
  */
 
 public class AlarmReceiver extends WakefulBroadcastReceiver {
+    private static Ringtone ringtone = null;
     @Override
     public void onReceive(Context context, Intent intent) {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        Ringtone ringtone = RingtoneManager.getRingtone(context, uri);
+        ringtone = RingtoneManager.getRingtone(context, uri);
         ringtone.play();
         Intent i = new Intent();
         i.setClassName("com.marcusjakobsson.aha", "com.marcusjakobsson.aha.FinalActivity");
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);
+    }
+
+    public static void stopRingtone(){
+        ringtone.stop();
     }
 }

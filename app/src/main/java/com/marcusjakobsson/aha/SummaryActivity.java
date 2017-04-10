@@ -30,12 +30,12 @@ import java.text.ParsePosition;
 import java.util.Locale;
 
 public class SummaryActivity extends AppCompatActivity {
-
+    private static PendingIntent pendingIntent;
     SharedPreferences sharedPreferences;
     TextView name;
     TextView wakeUpTime;
     TextView sleepTime;
-    AlarmManager alarm;
+    private static AlarmManager alarm;
     Calendar cal;
     int hours;
     int minutes;
@@ -66,18 +66,22 @@ public class SummaryActivity extends AppCompatActivity {
     private void setUpAlarm() {
         alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
         Intent intentRec = new Intent(SummaryActivity.this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(SummaryActivity.this, 0, intentRec, 0);
+        pendingIntent = PendingIntent.getBroadcast(SummaryActivity.this, 0, intentRec, 0);
 
         cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
         cal.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
-        cal.set(Calendar.HOUR_OF_DAY, hours + 1);
+        cal.set(Calendar.HOUR_OF_DAY, hours);
         cal.set(Calendar.MINUTE, minutes);
         Log.i("Alarm set to", cal.getTime().toString());
-        alarm.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+        //alarm.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 60*1000, pendingIntent);
         Intent intentFin = new Intent(getApplicationContext(),FinalActivity.class);
         startActivity(intentFin);
     }
 
+    public static void stopAlarm(){
+        alarm.cancel(pendingIntent);
+    }
 
     public void button_back(View view)
     {
