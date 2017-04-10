@@ -68,7 +68,7 @@ public class SummaryActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Log.i("Time", cal.getTime().toString());*/
+        Log.i("Time", cal.getTime().toString());a*/
 
         alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(SummaryActivity.this, AlarmReceiver.class);
