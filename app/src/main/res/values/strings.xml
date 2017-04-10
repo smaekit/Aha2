@@ -16,4 +16,6 @@
     <string name="wakeUp">VAKNAR:</string>
     <string name="sleep">SOVER:</string>
     <string name="title_activity_final">FinalActivity</string>
+    <string name="title_activity_alert">AlertActivity</string>
+    <string name="title_activity_wait">WaitActivity</string>
 </resources>

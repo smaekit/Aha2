@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +29,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".WakeUpActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SleepActivity"
             android:label="@string/title_activity_sleep"
@@ -41,12 +41,23 @@
         <activity
             android:name=".FinalActivity"
             android:label="@string/title_activity_final"
-            android:showOnLockScreen="true"></activity>
+            android:showOnLockScreen="true" />
+
         <receiver android:name=".AlarmReceiver">
             <intent-filter>
-                <action android:name="com.marcusjakobsson.aha"></action>
+                <action android:name="com.marcusjakobsson.aha" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".AlertActivity"
+            android:label="@string/title_activity_alert"
+            android:showOnLockScreen="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".WaitActivity"
+            android:label="@string/title_activity_wait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
     </application>
 
 </manifest>

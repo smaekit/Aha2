@@ -25,10 +25,7 @@ public class FinalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON|
-                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD|
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
-                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+
 
 
         new CountDownTimer(5000, 1000) {
@@ -38,7 +35,8 @@ public class FinalActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                setContentView(R.layout.activity_waiting);
+                Intent intent = new Intent(getApplicationContext(),WaitActivity.class);
+                startActivity(intent);
             }
 
         }.start();
@@ -47,10 +45,5 @@ public class FinalActivity extends AppCompatActivity {
     public void button_back(View view){
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
         startActivity(intent);
-    }
-
-    public void button_stop(View view){
-        AlarmReceiver.stopRingtone();
-        SummaryActivity.stopAlarm();
     }
 }
