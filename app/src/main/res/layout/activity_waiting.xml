@@ -14,7 +14,8 @@
         app:srcCompat="@drawable/sleep" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/stop"
+        android:onClick="button_stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/imageView"

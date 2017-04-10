@@ -50,7 +50,6 @@ public class WakeUpActivity extends AppCompatActivity {
         ArrayAdapter arrayAdapter = new CustomAdapter(this, wakeUpTimeTable);
         wakeUpTimeTableListView.setAdapter(arrayAdapter);
 
-
         wakeUpTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override

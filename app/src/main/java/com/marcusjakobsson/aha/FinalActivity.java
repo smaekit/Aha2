@@ -25,7 +25,7 @@ public class FinalActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
 
-        new CountDownTimer(10000, 1000) {
+        new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 Log.i("Time", "Tick");
@@ -41,5 +41,9 @@ public class FinalActivity extends AppCompatActivity {
     public void button_back(View view){
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
         startActivity(intent);
+    }
+
+    public void button_stop(View view){
+
     }
 }
