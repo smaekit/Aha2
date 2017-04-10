@@ -51,6 +51,6 @@ public class FinalActivity extends AppCompatActivity {
 
     public void button_stop(View view){
         AlarmReceiver.stopRingtone();
-        SummaryActivity.nextAlarm();
+        SummaryActivity.stopAlarm();
     }
 }

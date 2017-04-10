@@ -30,15 +30,23 @@ import java.text.ParsePosition;
 import java.util.Locale;
 
 public class SummaryActivity extends AppCompatActivity {
-    private static PendingIntent pendingIntent;
+    private static PendingIntent wakeUpPendingIntent;
+    private static AlarmManager wakeUpAlarm;
+    private static PendingIntent sleepPendingIntent;
+    private static AlarmManager sleepAlarm;
     SharedPreferences sharedPreferences;
     TextView name;
     TextView wakeUpTime;
     TextView sleepTime;
-    private static AlarmManager alarm;
-    Calendar cal;
-    int hours;
-    int minutes;
+    Calendar wakeUpCal;
+    Calendar sleepCal;
+    int wakeUpHours;
+    int wakeUpMinutes;
+    int sleepHours;
+    int sleepMinutes;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,33 +63,60 @@ public class SummaryActivity extends AppCompatActivity {
         wakeUpTime.setText(sharedPreferences.getString("wakeUpTime",""));
         sleepTime.setText(sharedPreferences.getString("sleepTime",""));
     }
+
+
+
+
     public void button_next(View view)
     {
-        String time = sharedPreferences.getString("wakeUpTime", "");
-        intTime(time);
+        String wTime = sharedPreferences.getString("wakeUpTime", "");
+        String sTime = sharedPreferences.getString("sleepTime","");
+        toIntTime(wTime, sTime);
 
         setUpAlarm();
     }
 
-    private void setUpAlarm() {
-        alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
-        Intent intentRec = new Intent(SummaryActivity.this, AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(SummaryActivity.this, 0, intentRec, 0);
 
-        cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-        cal.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
-        cal.set(Calendar.HOUR_OF_DAY, hours);
-        cal.set(Calendar.MINUTE, minutes);
-        Log.i("Alarm set to", cal.getTime().toString());
-        //alarm.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 60*1000, pendingIntent);
-        Intent intentFin = new Intent(getApplicationContext(),FinalActivity.class);
-        startActivity(intentFin);
+
+
+    private void setUpAlarm() {
+        wakeUpAlarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+        Intent wakeUpIntentRecv = new Intent(SummaryActivity.this, AlarmReceiver.class);
+        wakeUpPendingIntent = PendingIntent.getBroadcast(SummaryActivity.this, 0, wakeUpIntentRecv, 0);
+
+        wakeUpCal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        wakeUpCal.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
+        wakeUpCal.set(Calendar.HOUR_OF_DAY, wakeUpHours);
+        wakeUpCal.set(Calendar.MINUTE, wakeUpMinutes);
+        Log.i("Wake up alarm set to", wakeUpCal.getTime().toString());
+        wakeUpAlarm.setRepeating(AlarmManager.RTC_WAKEUP, wakeUpCal.getTimeInMillis(), 60*1000, wakeUpPendingIntent);
+        Intent wakeUpIntentFinal = new Intent(getApplicationContext(),FinalActivity.class);
+        startActivity(wakeUpIntentFinal);
+
+        ///////////////////////////////////////////////
+        sleepAlarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+        Intent sleepIntentRecv = new Intent(SummaryActivity.this, AlarmReceiver.class);
+        sleepPendingIntent = PendingIntent.getBroadcast(SummaryActivity.this, 1, sleepIntentRecv, 0);
+
+        sleepCal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        sleepCal.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
+        sleepCal.set(Calendar.HOUR_OF_DAY, 14);
+        sleepCal.set(Calendar.MINUTE, 38);
+        Log.i("Sleep alarm set to", sleepCal.getTime().toString());
+        sleepAlarm.setRepeating(AlarmManager.RTC_WAKEUP, sleepCal.getTimeInMillis(), 60*1000, sleepPendingIntent);
+        Intent sleepIntentFinal = new Intent(getApplicationContext(),FinalActivity.class);
+        startActivity(sleepIntentFinal);
     }
+
+
+
 
     public static void stopAlarm(){
-        alarm.cancel(pendingIntent);
+        wakeUpAlarm.cancel(wakeUpPendingIntent);
     }
+
+
+
 
     public void button_back(View view)
     {
@@ -89,9 +124,16 @@ public class SummaryActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void intTime(String intTime) {
-        String [] time = intTime.split(":");
-        hours = Integer.parseInt(time[0]);
-        minutes = Integer.parseInt(time[1]);
+
+
+
+    public void toIntTime(String wakeUpTime, String sleepTime) {
+        String [] wTime = wakeUpTime.split(":");
+        wakeUpHours = Integer.parseInt(wTime[0]);
+        wakeUpMinutes = Integer.parseInt(wTime[1]);
+
+        String [] sTime = sleepTime.split(":");
+        sleepHours = Integer.parseInt(sTime[0]);
+        sleepMinutes = Integer.parseInt(sTime[1]);
     }
 }

@@ -36,7 +36,7 @@ public class SleepActivity extends AppCompatActivity {
     }
 
     private void createList(){
-        String[] sleepTimeTable = {"17.00", "17.30", "18.00", "18.30", "19.00", "19.30", "20.00", "20.30", "21.00", "20.30", "21.00", "21.30", "22.00"};
+        String[] sleepTimeTable = {"17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "20:30", "21:00", "21:30", "22:00"};
         sleepTimeTableListView = (ListView) findViewById(R.id.sleepTimeTableListView);
         ArrayAdapter arrayAdapter = new CustomAdapter(this, sleepTimeTable);
         sleepTimeTableListView.setAdapter(arrayAdapter);
