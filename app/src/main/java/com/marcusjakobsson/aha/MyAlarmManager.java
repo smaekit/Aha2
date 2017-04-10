@@ -29,14 +29,21 @@ public class MyAlarmManager{
 
 
         Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-
-        if(cal.get(Calendar.HOUR_OF_DAY) > hours)
-            cal.add(Calendar.DAY_OF_YEAR, 1);
-
         cal.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
+
+        //Kontrollerar att tiden inte har passerat den angivna tiden.
+        if(cal.get(Calendar.HOUR_OF_DAY) > hours)
+        {
+            cal.add(Calendar.DAY_OF_YEAR, 1);
+        }
+        else if(cal.get(Calendar.HOUR_OF_DAY) == hours)
+        {
+            if(cal.get(Calendar.MINUTE) > minutes)
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+        }
         cal.set(Calendar.HOUR_OF_DAY, hours);
         cal.set(Calendar.MINUTE, minutes);
-        Log.i("Alarm set to", cal.getTime().toString());
+        Log.i("Alarm set to"+id, cal.getTime().toString());
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         Intent intentFinal = new Intent(context,FinalActivity.class);
         context.startActivity(intentFinal);
