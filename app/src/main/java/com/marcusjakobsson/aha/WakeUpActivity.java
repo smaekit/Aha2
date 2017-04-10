@@ -45,7 +45,7 @@ public class WakeUpActivity extends AppCompatActivity {
 
     private void createList()
     {
-        final String[] wakeUpTimeTable = {"06.00", "06.30", "07.00", "07.30", "08.00", "08.30", "09.00", "09.30", "10.00", "10.30", "11.00", "11.30", "12.00"};
+        final String[] wakeUpTimeTable = {"06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00"};
 
         ArrayAdapter arrayAdapter = new CustomAdapter(this, wakeUpTimeTable);
         wakeUpTimeTableListView.setAdapter(arrayAdapter);
