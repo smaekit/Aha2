@@ -14,7 +14,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
         <!--TODO: Göra en back-up på vårt konto eller på användarens?-->
         <activity
