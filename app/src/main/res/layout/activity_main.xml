@@ -63,4 +63,13 @@
             android:layout_alignTop="@+id/button_cross"
             android:layout_alignRight="@+id/editText_EnterName"
             android:layout_alignEnd="@+id/editText_EnterName" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/editText_EnterName"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/logo" />
+
 </RelativeLayout>

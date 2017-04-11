@@ -54,12 +54,10 @@
         <activity
             android:name=".AlertActivity"
             android:label="@string/title_activity_alert"
-            android:showOnLockScreen="true"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:showOnLockScreen="true"/>
         <activity
             android:name=".WaitActivity"
-            android:label="@string/title_activity_wait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:label="@string/title_activity_wait"/>
     </application>
 
 </manifest>
