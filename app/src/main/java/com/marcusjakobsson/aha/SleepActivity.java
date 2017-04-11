@@ -8,16 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class SleepActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     ListView sleepTimeTableListView;
     String sleepTime;
     Button buttonNext;
-    View activeRow;
+    int savedPosition;
 
 
 
@@ -29,6 +32,8 @@ public class SleepActivity extends AppCompatActivity {
         buttonNext = (Button) findViewById(R.id.button_next);
         buttonNext.setEnabled(false);
         sleepTimeTableListView = (ListView) findViewById(R.id.sleepTimeTableListView);
+        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        savedPosition = sharedPreferences.getInt("sSavedP", -10);
 
 
         createList();
@@ -43,8 +48,13 @@ public class SleepActivity extends AppCompatActivity {
      */
     private void createList(){
         String[] sleepTimeTable = {"17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "20:30", "21:00", "21:30", "22:00"};
-        ArrayAdapter arrayAdapter = new CustomAdapter(this, sleepTimeTable);
+        final CustomAdapter arrayAdapter = new CustomAdapter(this, stringArrToTextList(sleepTimeTable));
         sleepTimeTableListView.setAdapter(arrayAdapter);
+
+        if(savedPosition != -10){
+            arrayAdapter.setSelectedIndex(savedPosition);
+            buttonNext.setEnabled(true);
+        }
 
         sleepTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -52,21 +62,22 @@ public class SleepActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Log.i("Item","Item clicked "+view);
-                if(view == activeRow)//Villkor för att avmarkera en rad om man trycker på den två gånger
+                if(savedPosition == position) //Villkor för att avmarkera en rad om man trycker på den två gånger
                 {
-                    Log.i("Row","Same row clicked "+activeRow);
+                    Log.i("Row","Same row clicked");
                     buttonNext.setEnabled(false);
-                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
-                    activeRow = null;
+                    arrayAdapter.setSelectedIndex(-1);
+                    savedPosition = -10;
+                    sleepTime = "";
                 }
                 else
                 {
-                    activeRow = view;
-                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorSelected));
-                    unSelectList(activeRow); //Om man trycker på en rad kommer denna anropas för att avmarkera andra markerade rader.
+                    savedPosition = position;
+                    arrayAdapter.setSelectedIndex(position);
                     buttonNext.setEnabled(true);
                 }
-                sleepTime = String.valueOf(parent.getItemAtPosition(position));
+
+                sleepTime = String.valueOf(arrayAdapter.getItem(position).getText());
             }
         });
     }//End of createList
@@ -78,6 +89,7 @@ public class SleepActivity extends AppCompatActivity {
     {
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
         sharedPreferences.edit().putString("sleepTime", sleepTime).apply(); //Sparar permanent i variablen sleepTime
+        sharedPreferences.edit().putInt("sSavedP", savedPosition).apply();
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
         startActivity(intent);
     }//End of button_next
@@ -90,6 +102,21 @@ public class SleepActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),WakeUpActivity.class);
         startActivity(intent);
     }//End of button_back
+
+
+
+
+    private ArrayList<TextView> stringArrToTextList(String[] timeTable) {
+        ArrayList<TextView> tList = new ArrayList<>();
+
+        for(int i = 0; i < timeTable.length;i++){
+            TextView t = new TextView(this);
+            t.setText(timeTable[i]);
+            tList.add(t);
+        }
+
+        return tList;
+    }
 
 
 
