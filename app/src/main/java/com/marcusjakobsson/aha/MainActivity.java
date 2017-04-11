@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     EditText editText_enterName;
     ImageButton button_ok;
     ImageButton button_erase;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,6 +47,17 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         button_erase = (ImageButton)findViewById(R.id.button_cross);
         button_erase.setAlpha(0.3f);
         button_ok.setAlpha(0.3f);
+
+        //Skapar ett lokalt storage i appen.
+        sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
+        if(!name.equals(""))
+        {
+            editText_enterName.setText(name);
+            button_erase.setAlpha(1f);
+            button_ok.setAlpha(1f);
+        }
+
 
 
 
@@ -134,8 +146,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             String name = editText_enterName.getText().toString();
             if(isNameValid(name))
             {
-                //Skapar ett lokalt storage i appen.
-                SharedPreferences sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
                 sharedPreferences.edit().putString("name", name).apply(); //Sparar permanent i variablen namn
                 Intent intent = new Intent(getApplicationContext(),InstructionsActivity.class);
                 startActivity(intent);
@@ -154,6 +164,10 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     public void button_erase_name(View view)
     {
         editText_enterName.setText(null);
+        //sharedPreferences.edit().putString("name", "").apply();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 
 
