@@ -32,6 +32,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_margin="30dp"
+            android:paddingTop="90dp"
             app:srcCompat="@drawable/cat" />
 
     </RelativeLayout>
