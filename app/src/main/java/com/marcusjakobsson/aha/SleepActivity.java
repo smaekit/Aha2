@@ -54,6 +54,7 @@ public class SleepActivity extends AppCompatActivity {
         if(savedPosition != -10){
             arrayAdapter.setSelectedIndex(savedPosition);
             buttonNext.setEnabled(true);
+            sleepTime = arrayAdapter.getItem(savedPosition).getText().toString();
         }
 
         sleepTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()

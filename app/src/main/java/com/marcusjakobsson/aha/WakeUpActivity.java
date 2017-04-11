@@ -56,6 +56,7 @@ public class WakeUpActivity extends AppCompatActivity {
         if(savedPosition != -10){
             arrayAdapter.setSelectedIndex(savedPosition);
             buttonNext.setEnabled(true);
+            wakeUptime = arrayAdapter.getItem(savedPosition).getText().toString();
         }
 
         wakeUpTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
