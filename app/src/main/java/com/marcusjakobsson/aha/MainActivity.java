@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             if(isNameValid(name))
             {
                 //Skapar ett lokalt storage i appen.
-                SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
                 sharedPreferences.edit().putString("name", name).apply(); //Sparar permanent i variablen namn
                 Intent intent = new Intent(getApplicationContext(),InstructionsActivity.class);
                 startActivity(intent);

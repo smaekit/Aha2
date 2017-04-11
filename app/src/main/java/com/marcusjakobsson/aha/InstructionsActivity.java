@@ -24,7 +24,7 @@ public class InstructionsActivity extends AppCompatActivity
         setContentView(R.layout.activity_instructions);
 
 
-        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         imageButton_PlayVideo = (ImageButton)findViewById(R.id.imageButton_Play);
 
