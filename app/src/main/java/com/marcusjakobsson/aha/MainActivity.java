@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         editText_enterName.setOnKeyListener(this);
         button_ok = (ImageButton)findViewById(R.id.button_ok);
         button_erase = (ImageButton)findViewById(R.id.button_cross);
-        button_erase.setAlpha(0.3f);
-        button_ok.setAlpha(0.3f);
+
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //Skapar ett lokalt storage i appen.
