@@ -4,14 +4,10 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -23,10 +19,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
-    protected static final int RESULT_SPEECH = 1;
     //Variabler som behövs globalt
-    ImageButton btn_Speak;
-    RelativeLayout relativeLayout_main;
+    protected static final int RESULT_SPEECH = 1;
+    ImageButton button_Speak;               //Mikrofon knappen
+    RelativeLayout relativeLayout_main;     //för att kunna göra Bakgrunden klickbar
     EditText editText_enterName;
     ImageButton button_ok;
     ImageButton button_erase;
@@ -37,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btn_Speak = (ImageButton) findViewById(R.id.button_mic);
+        button_Speak = (ImageButton) findViewById(R.id.button_mic);
         relativeLayout_main = (RelativeLayout)findViewById(R.id.relativeLayout_main);
         relativeLayout_main.setOnClickListener(this);
         editText_enterName = (EditText)findViewById(R.id.editText_EnterName);
@@ -46,22 +42,22 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         button_erase = (ImageButton)findViewById(R.id.button_cross);
 
 
+        //TODO check if internetConnection annars funkar ej mikrofonknappen Toast/alpha
         //När mikrofon knappen trycks ner så tillåter den användaren att prata in sitt namn
-        btn_Speak.setOnClickListener(new View.OnClickListener()
+        button_Speak.setOnClickListener(new View.OnClickListener()
         {
 
             @Override
             public void onClick(View v)
             {
 
-                Intent intent = new Intent(
-                        RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "sv-SE");
 
                 try {
                     startActivityForResult(intent, RESULT_SPEECH);
                     editText_enterName.setText("");
+
                 } catch (ActivityNotFoundException a) {
                     Toast t = Toast.makeText(getApplicationContext(),
                             "Hoppsan! Din enhet stödjer inte Tal till Text",
@@ -71,10 +67,11 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             }
         });
 
-    }
+    } //End onCreate
 
 
 
+    //TODO skapa regex för verifiering av namn
     //Verifierar att användaren har skrivit in ett namn och skickar anv till nästa vy
     public void button_OK(View view)
     {
@@ -83,8 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             //Skapar ett lokalt storage i appen.
             SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
             sharedPreferences.edit().putString("name", editText_enterName.getText().toString()).apply(); //Sparar permanent i variablen namn
-            Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
-            //intent.putExtra("name",editText_enterName.getText().toString()); //skickar med namnet till nästa vy
+            Intent intent = new Intent(getApplicationContext(),InstructionsActivity.class);
             startActivity(intent);
         }
         else
@@ -96,15 +92,16 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
 
 
+    //TODO skapa en show hide alt alpha för knappen som är gömd när inget är inskrivet i namn rutan.
     //Rensar inputFönstret för namnrutan
     public void button_erase_name(View view)
     {
-        Log.i("Erase", "Erase pressed");
         editText_enterName.setText(null);
     }
 
 
 
+    //Lyssnar efter Enter tryck och skickar användaren till nästa vy om den skrivit in ett namn
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent event)
     {
@@ -131,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
 
 
+    //Resultatet från Tal till Text
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -149,6 +147,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             }
 
         }
-    }
-}
+    } //End onActivityResult
+} //End MainActivity
 

@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".instructionsActivity"
+            android:name=".InstructionsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".WakeUpActivity"

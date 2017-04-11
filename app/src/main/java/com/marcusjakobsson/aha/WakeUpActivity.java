@@ -87,7 +87,7 @@ public class WakeUpActivity extends AppCompatActivity {
 
     public void button_back(View view)
     {
-        Intent intent = new Intent(getApplicationContext(),instructionsActivity.class);
+        Intent intent = new Intent(getApplicationContext(),InstructionsActivity.class);
         startActivity(intent);
     }
 
