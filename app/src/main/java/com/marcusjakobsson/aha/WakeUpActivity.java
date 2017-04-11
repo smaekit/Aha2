@@ -8,16 +8,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class WakeUpActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences;
     ListView wakeUpTimeTableListView;
     Button buttonNext;
     String wakeUptime;
-    View activeRow;
+    String time;
+    int savedPosition;
 
 
 
@@ -29,6 +33,8 @@ public class WakeUpActivity extends AppCompatActivity {
         buttonNext = (Button) findViewById(R.id.button_next);
         buttonNext.setEnabled(false);
         wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
+        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        savedPosition = sharedPreferences.getInt("wSavedP", -10);
 
         createList();
     }//End of onCreate
@@ -44,8 +50,13 @@ public class WakeUpActivity extends AppCompatActivity {
     {
         final String[] wakeUpTimeTable = {"06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00"};
 
-        ArrayAdapter arrayAdapter = new CustomAdapter(this, wakeUpTimeTable);
+        final CustomAdapter arrayAdapter = new CustomAdapter(this, stringArrToTextList(wakeUpTimeTable));
         wakeUpTimeTableListView.setAdapter(arrayAdapter);
+
+        if(savedPosition != -10){
+            arrayAdapter.setSelectedIndex(savedPosition);
+            buttonNext.setEnabled(true);
+        }
 
         wakeUpTimeTableListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
@@ -53,35 +64,58 @@ public class WakeUpActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Log.i("Item","Item clicked "+view);
-                if(view == activeRow) //Villkor för att avmarkera en rad om man trycker på den två gånger
+                if(savedPosition == position) //Villkor för att avmarkera en rad om man trycker på den två gånger
                 {
-                    Log.i("Row","Same row clicked "+activeRow);
+                    Log.i("Row","Same row clicked");
                     buttonNext.setEnabled(false);
-                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
-                    activeRow = null;
+                    arrayAdapter.setSelectedIndex(-1);
+                    savedPosition = -10;
+                    wakeUptime = "";
                 }
                 else
                 {
-                    activeRow = view;
-                    activeRow.setBackgroundColor(getResources().getColor(R.color.colorSelected));
-                    unSelectList(activeRow); //Om man trycker på en rad kommer denna anropas för att avmarkera andra markerade rader.
+                    savedPosition = position;
+                    arrayAdapter.setSelectedIndex(position);
                     buttonNext.setEnabled(true);
                 }
 
-                wakeUptime = String.valueOf(parent.getItemAtPosition(position));
+                wakeUptime = String.valueOf(arrayAdapter.getItem(position).getText());
 
             }
 
         });
+
     }//End of createList
 
+    private void updateList(CustomAdapter arrayAdapter) {
 
+        for(int i = 0; i < arrayAdapter.getCount();i++)
+        {
+            TextView t = arrayAdapter.getItem(i);
+            if(t.getText().toString().equals(time)){
+                arrayAdapter.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
+
+    private ArrayList<TextView> stringArrToTextList(String[] timeTable) {
+        ArrayList<TextView> tList = new ArrayList<>();
+
+        for(int i = 0; i < timeTable.length;i++){
+            TextView t = new TextView(this);
+            t.setText(timeTable[i]);
+            tList.add(t);
+        }
+
+        return tList;
+    }
 
 
     public void button_next(View view)
     {
-        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
         sharedPreferences.edit().putString("wakeUpTime", wakeUptime).apply(); //Sparar permanent i variablen wakeUpTime
+        sharedPreferences.edit().putInt("wSavedP", savedPosition).apply();
         Intent intent = new Intent(getApplicationContext(),SleepActivity.class);
         startActivity(intent);
     }//End of button_next
@@ -98,6 +132,7 @@ public class WakeUpActivity extends AppCompatActivity {
 
 
 
+    /*
     /**
      * Anropas för att iterera genom ListView:n och avmarkera de rader som är markerade.
      * Används vid de tillfällen då man inte vill ha två rader markerade i samma View.
@@ -114,5 +149,5 @@ public class WakeUpActivity extends AppCompatActivity {
             if(row != clickedRow)
                 row.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
         }
-    }//End of unSelectedList
+    }//End of unSelectedList*/
 }

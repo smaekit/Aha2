@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,7 +27,6 @@ public class SummaryActivity extends AppCompatActivity {
         name = (TextView) findViewById(R.id.text_name);
         wakeUpTime = (TextView) findViewById(R.id.text_wakeup);
         sleepTime = (TextView) findViewById(R.id.text_sleep);
-
 
         //Initierar samtliga textViews så de visar inmatad information på skärmen
         sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);

@@ -3,7 +3,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="bottom"
@@ -13,7 +12,6 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/button_back"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".25"
