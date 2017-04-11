@@ -6,12 +6,16 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 public class InstructionsActivity extends AppCompatActivity
 {
+
+    ImageButton imageButton_PlayVideo;
+    VideoView videoV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,25 +26,34 @@ public class InstructionsActivity extends AppCompatActivity
 
         SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
+        imageButton_PlayVideo = (ImageButton)findViewById(R.id.imageButton_Play);
 
         TextView textView =(TextView)findViewById(R.id.textView_InfoMessage);
         textView.setText("Hej "+name+"!\nHär är en instruktionsvideo, starta den genom att trycka på play");
+        initiateVideoPlayer();
 
-        startVideo();
     } //End onCreate
 
 
 
     //TODO skapa video för appen
-    private void startVideo()
+    private void initiateVideoPlayer()
     {
-        VideoView videoV = (VideoView)findViewById(R.id.videoView);
+        videoV = (VideoView)findViewById(R.id.videoView);
         videoV.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.normal);
 
         MediaController mediaController = new MediaController(this);
         videoV.setMediaController(mediaController);
         mediaController.setAnchorView(videoV);
-        videoV.start();  //TODO klicka på en knapp för att starta videon
+        videoV.seekTo(500);
+    }
+
+
+
+    public void button_PlayVideo(View view)
+    {
+        imageButton_PlayVideo.setVisibility(View.GONE);
+        videoV.start();
     }
 
 
