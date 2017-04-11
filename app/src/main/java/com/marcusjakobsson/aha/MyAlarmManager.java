@@ -47,10 +47,9 @@ class MyAlarmManager{
         cal.setTimeZone(TimeZone.getTimeZone("Europe/Stockholm"));
 
         //Kontrollerar att tiden inte har passerat den angivna tiden.
-        if(cal.get(Calendar.HOUR_OF_DAY) > hours)
-        {
+        Log.i("HOUR", String.valueOf(hours));
+        if( hours == 24 || cal.get(Calendar.HOUR_OF_DAY) > hours)
             cal.add(Calendar.DAY_OF_YEAR, 1);
-        }
         else if(cal.get(Calendar.HOUR_OF_DAY) == hours)
         {
             if(cal.get(Calendar.MINUTE) > minutes)
