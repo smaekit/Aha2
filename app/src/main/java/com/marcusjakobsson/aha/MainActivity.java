@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,6 +44,44 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         editText_enterName.setOnKeyListener(this);
         button_ok = (ImageButton)findViewById(R.id.button_ok);
         button_erase = (ImageButton)findViewById(R.id.button_cross);
+        button_erase.setAlpha(0.3f);
+        button_ok.setAlpha(0.3f);
+
+
+
+        //Ändrar transparens för button_OK/Erase när en korrekt input är inskrivet i namn rutan.
+        editText_enterName.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String name = editText_enterName.getText().toString();
+                if(editText_enterName.getText().toString().isEmpty())
+                {
+                    button_erase.setAlpha(0.3f);
+                    button_ok.setAlpha(0.3f);
+
+                }else
+                {
+                    button_erase.setAlpha(1f);
+                    if(isNameValid(name))
+                    {
+                        button_ok.setAlpha(1f);
+                    }
+                    else
+                        button_ok.setAlpha(0.3f);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        }); //End addTextChangedListener
 
 
         //TODO check if internetConnection annars funkar ej mikrofonknappen Toast/alpha
@@ -76,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     private boolean isNameValid(String name)
     {
         boolean isValid = false;
-        Pattern p = Pattern.compile("[a-zåäöü]+",Pattern.CASE_INSENSITIVE);
+        Pattern p = Pattern.compile("[a-zåäöü]+-?[ ]?[a-zåäöü]+",Pattern.CASE_INSENSITIVE);
         Matcher m = p.matcher(name);
         if(m.matches())
             isValid = true;
@@ -110,7 +150,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
 
 
-    //TODO skapa en show hide alt alpha för knappen som är gömd när inget är inskrivet i namn rutan.
     //Rensar inputFönstret för namnrutan
     public void button_erase_name(View view)
     {
