@@ -16,6 +16,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
@@ -70,25 +72,41 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     } //End onCreate
 
 
+    //RegEx för namn tar in ett namn som en sträng
+    private boolean isNameValid(String name)
+    {
+        boolean isValid = false;
+        Pattern p = Pattern.compile("[a-zåäöü]+",Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(name);
+        if(m.matches())
+            isValid = true;
 
-    //TODO skapa regex för verifiering av namn
+        return isValid;
+    }
+
+
+
     //Verifierar att användaren har skrivit in ett namn och skickar anv till nästa vy
     public void button_OK(View view)
     {
         if(!editText_enterName.getText().toString().equals(""))
         {
-            //Skapar ett lokalt storage i appen.
-            SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
-            sharedPreferences.edit().putString("name", editText_enterName.getText().toString()).apply(); //Sparar permanent i variablen namn
-            Intent intent = new Intent(getApplicationContext(),InstructionsActivity.class);
-            startActivity(intent);
+            String name = editText_enterName.getText().toString();
+            if(isNameValid(name))
+            {
+                //Skapar ett lokalt storage i appen.
+                SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+                sharedPreferences.edit().putString("name", name).apply(); //Sparar permanent i variablen namn
+                Intent intent = new Intent(getApplicationContext(),InstructionsActivity.class);
+                startActivity(intent);
+            }
+            else
+                Toast.makeText(this, "Ej ett gilltigt namn får endast innehålla bokstäver", Toast.LENGTH_SHORT).show();
         }
         else
-        {
             Toast.makeText(this, "Var vänlig skriv in ditt namn.", Toast.LENGTH_SHORT).show();
-        }
 
-    }
+    }//End button_OK
 
 
 
