@@ -1,7 +1,5 @@
 package com.marcusjakobsson.aha;
 
-
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,23 +30,30 @@ public class SummaryActivity extends AppCompatActivity {
         sleepTime = (TextView) findViewById(R.id.text_sleep);
 
 
+        //Initierar samtliga textViews så de visar inmatad information på skärmen
         sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
         name.setText(sharedPreferences.getString("name",""));
         wakeUpTime.setText(sharedPreferences.getString("wakeUpTime",""));
         sleepTime.setText(sharedPreferences.getString("sleepTime",""));
-    }
+    }//End of onCreate
 
 
 
-
+    /**
+     * Vid bekräftelse av information kommer applikationen att skapa ett alarm
+     * utifrån angiven tid.
+     */
     public void button_next(View view)
     {
         setUpAlarm();
-    }
+    }//End of button_next
 
 
 
 
+    /**
+     * Ställer in alarmen utifrån angiven morgontid samt kvällstid.
+     */
     private void setUpAlarm() {
 
         String wTime = sharedPreferences.getString("wakeUpTime", "");
@@ -69,15 +74,18 @@ public class SummaryActivity extends AppCompatActivity {
             Log.i("Alarms", "Alarm 1 is up!");
         else
             Log.i("Alarms", "Alarm 1 is not up!");*/
-    }
+    }//End of setUpAlarm
 
 
 
 
+    /**
+     * Stänger av båda alarmen
+     */
     public static void stopAlarm(){
         wakeUpAlarm.stopAlarm();
         sleepAlarm.stopAlarm();
-    }
+    }//End of stopAlarm
 
 
 
@@ -86,5 +94,5 @@ public class SummaryActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(),SleepActivity.class);
         startActivity(intent);
-    }
+    }//End of button_back
 }
