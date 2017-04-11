@@ -4,6 +4,5 @@
     <color name="colorPrimaryDark">#921d56</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorDisco">#921d56</color>
-    <color name="colorSelected">#a5ca814d</color>
     <color name="colorDefaultRow">#A5FFFFFF</color>
 </resources>

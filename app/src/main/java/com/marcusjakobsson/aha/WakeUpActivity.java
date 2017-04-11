@@ -48,7 +48,7 @@ public class WakeUpActivity extends AppCompatActivity {
      */
     private void createList()
     {
-        final String[] wakeUpTimeTable = {"06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00"};
+        final String[] wakeUpTimeTable = {"05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00"};
 
         final CustomAdapter arrayAdapter = new CustomAdapter(this, stringArrToTextList(wakeUpTimeTable));
         wakeUpTimeTableListView.setAdapter(arrayAdapter);
@@ -71,7 +71,6 @@ public class WakeUpActivity extends AppCompatActivity {
                     buttonNext.setEnabled(false);
                     arrayAdapter.setSelectedIndex(-1);
                     savedPosition = -10;
-                    wakeUptime = "";
                 }
                 else
                 {
@@ -139,7 +138,7 @@ public class WakeUpActivity extends AppCompatActivity {
      * Används vid de tillfällen då man inte vill ha två rader markerade i samma View.
      * Argumentet ska vara den rad som användaren har tryckt på.
      */
-    private void unSelectList(View clickedRow){
+    /*private void unSelectList(View clickedRow){
         int numOfChildren = wakeUpTimeTableListView.getChildCount();
         Log.i("Count", String.valueOf(numOfChildren));
 

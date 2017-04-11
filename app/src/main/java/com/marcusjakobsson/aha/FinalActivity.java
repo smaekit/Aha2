@@ -9,6 +9,8 @@ import android.view.View;
 
 public class FinalActivity extends AppCompatActivity {
 
+    CountDownTimer timer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -16,7 +18,7 @@ public class FinalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_final);
 
 
-        new CountDownTimer(5000, 1000) {
+        timer = new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {} //Kan användas för att skriva ut varje tick
 
@@ -32,6 +34,7 @@ public class FinalActivity extends AppCompatActivity {
 
     public void button_back(View view){
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
+        timer.cancel();
         startActivity(intent);
     }
 } //End FinalActivity

@@ -47,7 +47,7 @@ public class SleepActivity extends AppCompatActivity {
      * listView:n i aktiviteten activity_sleep.
      */
     private void createList(){
-        String[] sleepTimeTable = {"17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "20:30", "21:00", "21:30", "22:00"};
+        String[] sleepTimeTable = {"17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00"};
         final CustomAdapter arrayAdapter = new CustomAdapter(this, stringArrToTextList(sleepTimeTable));
         sleepTimeTableListView.setAdapter(arrayAdapter);
 
@@ -122,12 +122,12 @@ public class SleepActivity extends AppCompatActivity {
 
 
 
-    /**
+    /*/**
      * Anropas för att iterera genom ListView:n och avmarkera de rader som är markerade.
      * Används vid de tillfällen då man inte vill ha två rader markerade i samma View.
      * Argumentet ska vara den rad som användaren har tryckt på.
      */
-    private void unSelectList(View view){
+    /*private void unSelectList(View view){
         int count = sleepTimeTableListView.getChildCount();
 
         for(int i = 0; i < count; i++){
@@ -135,5 +135,5 @@ public class SleepActivity extends AppCompatActivity {
             if(row != view)
                 row.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
         }
-    }//End of unSelectList
+    }//End of unSelectList*/
 }
