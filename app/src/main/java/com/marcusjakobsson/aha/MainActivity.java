@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         }); //End addTextChangedListener
 
 
-        //TODO check if internetConnection annars funkar ej mikrofonknappen Toast/alpha
+
         //När mikrofon knappen trycks ner så tillåter den användaren att prata in sitt namn
         button_Speak.setOnClickListener(new View.OnClickListener()
         {
@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             @Override
             public void onClick(View v)
             {
-
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "sv-SE");
 
@@ -106,8 +105,9 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
                             Toast.LENGTH_SHORT);
                     t.show();
                 }
-            }
-        });
+            }//End onClick
+
+        });//End setOnClickListener
 
     } //End onCreate
 
