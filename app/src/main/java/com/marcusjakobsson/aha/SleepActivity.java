@@ -93,6 +93,7 @@ public class SleepActivity extends AppCompatActivity {
         sharedPreferences.edit().putInt("sSavedP", savedPosition).apply();
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
     }//End of button_next
 
 
@@ -102,6 +103,7 @@ public class SleepActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(),WakeUpActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
     }//End of button_back
 
 
