@@ -36,4 +36,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
         ringtone.stop();
     }
 
+    //Anropas för att starta igång ringsignalen utan att avbryta alarmet.
+    public static void startRingtone() { ringtone.play(); }
+
 }//End AlarmReceiver
