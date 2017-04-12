@@ -150,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
                 sharedPreferences.edit().putString("name", name).apply(); //Sparar permanent i variablen namn
                 Intent intent = new Intent(getApplicationContext(),InstructionsActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fadein,R.anim.fadeout);
             }
             else
                 Toast.makeText(this, "Ej ett gilltigt namn får endast innehålla bokstäver", Toast.LENGTH_SHORT).show();

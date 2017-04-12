@@ -62,6 +62,7 @@ public class InstructionsActivity extends AppCompatActivity
     {
         Intent intent = new Intent(getApplicationContext(),WakeUpActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
     }
 
 
@@ -71,6 +72,7 @@ public class InstructionsActivity extends AppCompatActivity
     {
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
     }
 
 

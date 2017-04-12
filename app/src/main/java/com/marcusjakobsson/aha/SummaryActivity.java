@@ -92,6 +92,7 @@ public class SummaryActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(),SleepActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
     }//End of button_back
 
 
