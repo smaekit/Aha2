@@ -43,7 +43,8 @@
         <activity
             android:name=".FinalActivity"
             android:label="@string/title_activity_final"
-            android:showOnLockScreen="true" />
+            android:showOnLockScreen="true"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".AlarmReceiver">
             <intent-filter>
@@ -54,10 +55,12 @@
         <activity
             android:name=".AlertActivity"
             android:label="@string/title_activity_alert"
-            android:showOnLockScreen="true"/>
+            android:showOnLockScreen="true"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".WaitActivity"
-            android:label="@string/title_activity_wait"/>
+            android:label="@string/title_activity_wait"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

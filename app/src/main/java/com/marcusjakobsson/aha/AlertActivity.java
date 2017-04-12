@@ -10,7 +10,7 @@ import android.view.WindowManager;
 
 public class AlertActivity extends AppCompatActivity
 {
-    CountDownTimer timer;
+    private static CountDownTimer timer;
     private final long fifteenMin = 15*60*1000;
     private final long halfHour = 30*60*1000;
 
@@ -27,12 +27,13 @@ public class AlertActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
 
-        timer = new CountDownTimer(halfHour, fifteenMin) {
+        timer = new CountDownTimer(20*1000, 10*1000) {
 
+            @Override
             public void onTick(long millisUntilFinished)
             {
+                Log.i("TICK", "Tick "+millisUntilFinished);
                 AlarmReceiver.startRingtone();
-                Log.i("TICK", "Tick");
             } //Kan användas för att skriva ut varje tick
 
             public void onFinish() {
@@ -44,7 +45,7 @@ public class AlertActivity extends AppCompatActivity
 
 
 
-    private void stopAlarm()
+    public void stopAlarm()
     {
         AlarmReceiver.stopRingtone();
         timer.cancel();

@@ -7,6 +7,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.content.WakefulBroadcastReceiver;
+import android.util.Log;
 
 /**
  * Created by konstantin_ay on 2017-04-10.
@@ -22,7 +23,7 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
     {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);//Sätter en URI till ett notisljud.
         ringtone = RingtoneManager.getRingtone(context, uri);
-        ringtone.play();
+        Log.i("RECEIVER", "RECEIVED!");
         Intent i = new Intent();
         i.setClassName("com.marcusjakobsson.aha", "com.marcusjakobsson.aha.AlertActivity");
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
