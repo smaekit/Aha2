@@ -36,5 +36,6 @@
             android:textAlignment="center"/>
 
     </RelativeLayout>
-    <include layout="@layout/bottom_navigation"></include>
+
+    <include layout="@layout/bottom_navigation" />
 </LinearLayout>

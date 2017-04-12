@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -45,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         editText_enterName.setOnKeyListener(this);
         button_ok = (ImageButton)findViewById(R.id.button_ok);
         button_erase = (ImageButton)findViewById(R.id.button_cross);
-        button_erase.setAlpha(0.3f);
-        button_ok.setAlpha(0.3f);
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //Skapar ett lokalt storage i appen.
         sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
@@ -164,7 +165,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     public void button_erase_name(View view)
     {
         editText_enterName.setText(null);
-        //sharedPreferences.edit().putString("name", "").apply();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         if(view.getId() == R.id.relativeLayout_main) //Klickar man i bakgrunden så ska tangentbordet gömmas undan
         {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),0); //Gömmer tangetbordet, 0 är flagga 0.
+            inputMethodManager.hideSoftInputFromWindow(editText_enterName.getWindowToken(),0); //Gömmer tangetbordet, 0 är flagga 0.
         }
     }
 

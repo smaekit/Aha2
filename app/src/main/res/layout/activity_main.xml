@@ -19,7 +19,6 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:contentDescription="@string/enterName"
             android:ems="10"
             android:hint="@string/enterName"
             android:inputType="textPersonName"
@@ -47,22 +46,26 @@
             android:layout_marginLeft="55dp"
             android:layout_marginStart="55dp"
             android:layout_marginTop="26dp"
+            android:alpha="0.3"
             android:background="@null"
             android:onClick="button_erase_name"
+            android:contentDescription="@string/deleteName"
             app:srcCompat="@drawable/cancel" />
 
         <ImageButton
             android:id="@+id/button_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/editText_EnterName"
+            android:layout_alignRight="@+id/editText_EnterName"
+            android:layout_alignTop="@+id/button_cross"
             android:layout_marginEnd="55dp"
             android:layout_marginRight="55dp"
+            android:alpha="0.3"
             android:background="@null"
             android:onClick="button_OK"
-            app:srcCompat="@drawable/checked"
-            android:layout_alignTop="@+id/button_cross"
-            android:layout_alignRight="@+id/editText_EnterName"
-            android:layout_alignEnd="@+id/editText_EnterName" />
+            android:contentDescription="@string/confirmName"
+            app:srcCompat="@drawable/checked" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -70,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/editText_EnterName"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/logo"
             app:srcCompat="@drawable/logo" />
 
 </RelativeLayout>
