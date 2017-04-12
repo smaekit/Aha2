@@ -56,7 +56,7 @@ public class SummaryActivity extends AppCompatActivity {
 
         String wTime = sharedPreferences.getString("wakeUpTime", "");
         String sTime = sharedPreferences.getString("sleepTime","");
-        wakeUpAlarm = new MyAlarmManager(this, wTime, 0);
+        wakeUpAlarm = new MyAlarmManager(this, "19:46", 0);
         sleepAlarm = new MyAlarmManager(this, sTime, 1);
 
         /*boolean alarmUpW = (PendingIntent.getBroadcast(this, 0, new Intent("com.marcusjakobsson.aha.SummaryActivity"), PendingIntent.FLAG_NO_CREATE) != null);

@@ -27,16 +27,21 @@ public class AlertActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
 
-        timer = new CountDownTimer(20*1000, 10*1000) {
+
+        //30000 ms är en felmarginal för att det sista ticket ska låta
+        timer = new CountDownTimer(halfHour, fifteenMin - 30000)
+        {
 
             @Override
-            public void onTick(long millisUntilFinished)
+            public void onTick(long millisUntilFinished) //Var 15:e minut kommer följande exekveras
             {
                 Log.i("TICK", "Tick "+millisUntilFinished);
                 AlarmReceiver.startRingtone();
             } //Kan användas för att skriva ut varje tick
 
-            public void onFinish() {
+            public void onFinish() //När timern är färdig kommer följande exekveras
+            {
+                Log.i("TICK", "Finished!");
                 stopAlarm();
             }
 
