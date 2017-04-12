@@ -15,4 +15,9 @@
     <string name="title_activity_final">FinalActivity</string>
     <string name="title_activity_alert">AlertActivity</string>
     <string name="title_activity_wait">WaitActivity</string>
+    <string name="logo">Aha logotyp</string>
+    <string name="confirmName">Bekräfta namn</string>
+    <string name="deleteName">Radera namnfältet</string>
+    <string name="everythingWorks">söt katt säger allting fungerar som det ska! Jag kommer att påminna dig när det behövs</string>
+    <string name="play">Spela upp video</string>
 </resources>

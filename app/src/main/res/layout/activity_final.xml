@@ -20,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:background="@color/colorDisco"
             android:gravity="center"
-            android:text="Aha."
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="50sp"
@@ -33,6 +33,7 @@
             android:layout_centerVertical="true"
             android:layout_margin="30dp"
             android:paddingTop="90dp"
+            android:contentDescription="@string/everythingWorks"
             app:srcCompat="@drawable/cat" />
 
     </RelativeLayout>
@@ -53,6 +54,7 @@
                 android:background="@null"
                 android:onClick="button_back"
                 android:text="@string/back"
+                android:contentDescription="@string/back"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 

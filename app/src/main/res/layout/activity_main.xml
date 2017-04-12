@@ -49,6 +49,7 @@
             android:alpha="0.3"
             android:background="@null"
             android:onClick="button_erase_name"
+            android:contentDescription="@string/deleteName"
             app:srcCompat="@drawable/cancel" />
 
         <ImageButton
@@ -63,6 +64,7 @@
             android:alpha="0.3"
             android:background="@null"
             android:onClick="button_OK"
+            android:contentDescription="@string/confirmName"
             app:srcCompat="@drawable/checked" />
 
         <ImageView
@@ -71,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/editText_EnterName"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/logo"
             app:srcCompat="@drawable/logo" />
 
 </RelativeLayout>
