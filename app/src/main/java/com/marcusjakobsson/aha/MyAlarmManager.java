@@ -8,9 +8,6 @@ import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
 import android.util.Log;
 
-/**
- * Created by konstantin_ay on 2017-04-10.
- */
 
 class MyAlarmManager{
     private final PendingIntent pendingIntent;

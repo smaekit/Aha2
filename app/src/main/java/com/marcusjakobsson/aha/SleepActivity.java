@@ -110,9 +110,9 @@ public class SleepActivity extends AppCompatActivity {
     private ArrayList<TextView> stringArrToTextList(String[] timeTable) {
         ArrayList<TextView> tList = new ArrayList<>();
 
-        for(int i = 0; i < timeTable.length;i++){
+        for (String aTimeTable : timeTable) {
             TextView t = new TextView(this);
-            t.setText(timeTable[i]);
+            t.setText(aTimeTable);
             tList.add(t);
         }
 
