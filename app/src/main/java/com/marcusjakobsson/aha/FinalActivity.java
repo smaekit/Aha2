@@ -9,7 +9,7 @@ import android.view.View;
 
 public class FinalActivity extends AppCompatActivity {
 
-    CountDownTimer timer;
+    private CountDownTimer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

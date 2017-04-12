@@ -14,8 +14,8 @@ import android.widget.VideoView;
 public class InstructionsActivity extends AppCompatActivity
 {
 
-    ImageButton imageButton_PlayVideo;
-    VideoView videoV;
+    private ImageButton imageButton_PlayVideo;
+    private VideoView videoV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

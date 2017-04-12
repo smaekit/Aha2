@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends BaseAdapter{
 
-    private Context context;
-    private ArrayList<TextView> testList;
+    private final Context context;
+    private final ArrayList<TextView> testList;
     private int selectedIndex;
-    private int selectedColor = Color.parseColor("#B5ca814d");
-    private int defaultColor = Color.parseColor("#30FFFFFF");
+    private final int selectedColor = Color.parseColor("#B5ca814d");
+    private final int defaultColor = Color.parseColor("#30FFFFFF");
 
     CustomAdapter(Context ctx, ArrayList<TextView> text) {
         this.context = ctx;

@@ -11,10 +11,10 @@ import android.widget.TextView;
 public class SummaryActivity extends AppCompatActivity {
     private static MyAlarmManager wakeUpAlarm;
     private static MyAlarmManager sleepAlarm;
-    SharedPreferences sharedPreferences;
-    TextView name;
-    TextView wakeUpTime;
-    TextView sleepTime;
+    private SharedPreferences sharedPreferences;
+    private TextView name;
+    private TextView wakeUpTime;
+    private TextView sleepTime;
 
 
 

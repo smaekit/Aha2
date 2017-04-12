@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 public class SleepActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
-    ListView sleepTimeTableListView;
-    String sleepTime;
-    Button buttonNext;
-    int savedPosition;
+    private SharedPreferences sharedPreferences;
+    private ListView sleepTimeTableListView;
+    private String sleepTime;
+    private Button buttonNext;
+    private int savedPosition;
 
 
 

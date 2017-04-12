@@ -25,13 +25,13 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity implements View.OnKeyListener, View.OnClickListener {
 
     //Variabler som behövs globalt
-    protected static final int RESULT_SPEECH = 1;
-    ImageButton button_Speak;               //Mikrofon knappen
-    RelativeLayout relativeLayout_main;     //för att kunna göra Bakgrunden klickbar
-    EditText editText_enterName;
-    ImageButton button_ok;
-    ImageButton button_erase;
-    SharedPreferences sharedPreferences;
+    private static final int RESULT_SPEECH = 1;
+    private ImageButton button_Speak;               //Mikrofon knappen
+    private RelativeLayout relativeLayout_main;     //för att kunna göra Bakgrunden klickbar
+    private EditText editText_enterName;
+    private ImageButton button_ok;
+    private ImageButton button_erase;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)

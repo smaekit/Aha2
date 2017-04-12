@@ -16,12 +16,11 @@ import java.util.ArrayList;
 
 public class WakeUpActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
-    ListView wakeUpTimeTableListView;
-    Button buttonNext;
-    String wakeUptime;
-    String time;
-    int savedPosition;
+    private SharedPreferences sharedPreferences;
+    private ListView wakeUpTimeTableListView;
+    private Button buttonNext;
+    private String wakeUptime;
+    private int savedPosition;
 
 
 
@@ -86,18 +85,6 @@ public class WakeUpActivity extends AppCompatActivity {
         });
 
     }//End of createList
-
-    private void updateList(CustomAdapter arrayAdapter) {
-
-        for(int i = 0; i < arrayAdapter.getCount();i++)
-        {
-            TextView t = arrayAdapter.getItem(i);
-            if(t.getText().toString().equals(time)){
-                arrayAdapter.setSelectedIndex(i);
-                break;
-            }
-        }
-    }
 
     private ArrayList<TextView> stringArrToTextList(String[] timeTable) {
         ArrayList<TextView> tList = new ArrayList<>();

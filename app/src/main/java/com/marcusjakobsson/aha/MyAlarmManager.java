@@ -11,12 +11,12 @@ import android.util.Log;
 
 class MyAlarmManager{
     private final PendingIntent pendingIntent;
-    private AlarmManager alarm;
+    private final AlarmManager alarm;
     private int hours;
     private int minutes;
 
-    private Context myContext;
-    private int myId;
+    private final Context myContext;
+    private final int myId;
 
 
 
