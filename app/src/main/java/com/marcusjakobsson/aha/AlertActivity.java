@@ -21,6 +21,7 @@ public class AlertActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
+
     }//End onCreate
 
 
@@ -29,7 +30,6 @@ public class AlertActivity extends AppCompatActivity
     public void button_stopAlarm(View view)
     {
         AlarmReceiver.stopRingtone();
-        SummaryActivity.stopAlarm();
 
         Intent intent = new Intent(getApplicationContext(), WaitActivity.class);
         startActivity(intent);

@@ -59,7 +59,7 @@ class MyAlarmManager{
         cal.set(Calendar.HOUR_OF_DAY, hours);
         cal.set(Calendar.MINUTE, minutes);
         Log.i("Alarm set to"+myId, cal.getTime().toString());
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         Intent intentFinal = new Intent(myContext,FinalActivity.class);
         myContext.startActivity(intentFinal);
     }//End of setUpAlarm
