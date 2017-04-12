@@ -66,9 +66,17 @@ public class InstructionsActivity extends AppCompatActivity
 
 
 
+
     public void button_back(View view)
     {
         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
+    }
+
+
+
+
+    @Override
+    public void onBackPressed() {
     }
 } //End InstructionsActivity

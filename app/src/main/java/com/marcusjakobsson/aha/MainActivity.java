@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
 
 
+
     @Override
     public void onClick(View view)
     {
@@ -219,5 +220,12 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
         }
     } //End onActivityResult
+
+
+
+
+    @Override
+    public void onBackPressed() {
+    }
 } //End MainActivity
 

@@ -119,6 +119,9 @@ public class WakeUpActivity extends AppCompatActivity {
 
 
 
+    @Override
+    public void onBackPressed() {
+    }
     /*
     /**
      * Anropas för att iterera genom ListView:n och avmarkera de rader som är markerade.

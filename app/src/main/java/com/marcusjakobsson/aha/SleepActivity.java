@@ -122,6 +122,13 @@ public class SleepActivity extends AppCompatActivity {
 
 
 
+    @Override
+    public void onBackPressed() {
+    }
+
+
+
+
     /*/**
      * Anropas för att iterera genom ListView:n och avmarkera de rader som är markerade.
      * Används vid de tillfällen då man inte vill ha två rader markerade i samma View.

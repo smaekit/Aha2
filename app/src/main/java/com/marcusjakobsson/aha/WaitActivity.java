@@ -11,4 +11,10 @@ public class WaitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_wait);
     }//End of onCreate
 
+
+
+
+    @Override
+    public void onBackPressed() {
+    }
 }

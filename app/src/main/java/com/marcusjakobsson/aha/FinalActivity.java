@@ -32,9 +32,18 @@ public class FinalActivity extends AppCompatActivity {
 
 
 
+
+
     public void button_back(View view){
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
         timer.cancel();
         startActivity(intent);
+    }
+
+
+
+
+    @Override
+    public void onBackPressed() {
     }
 } //End FinalActivity

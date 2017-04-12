@@ -93,4 +93,11 @@ public class SummaryActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),SleepActivity.class);
         startActivity(intent);
     }//End of button_back
+
+
+
+
+    @Override
+    public void onBackPressed() {
+    }
 }

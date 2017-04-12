@@ -27,7 +27,7 @@ public class AlertActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
 
-        timer = new CountDownTimer(3*60*1000, 60*1000) {
+        timer = new CountDownTimer(halfHour, fifteenMin) {
 
             public void onTick(long millisUntilFinished)
             {
@@ -36,7 +36,6 @@ public class AlertActivity extends AppCompatActivity
             } //Kan användas för att skriva ut varje tick
 
             public void onFinish() {
-                AlarmReceiver.startRingtone();
                 stopAlarm();
             }
 
@@ -56,9 +55,17 @@ public class AlertActivity extends AppCompatActivity
 
 
 
+
     //Anropas när användaren trycker på tandborsten och kommer omdirigera användare till "sovande katt"-vyn
     public void button_stopAlarm(View view)
     {
         stopAlarm();
+    }
+
+
+
+
+    @Override
+    public void onBackPressed() {
     }
 }//End AlertActivity
