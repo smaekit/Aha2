@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -26,9 +27,13 @@ public class AlertActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
 
-        timer = new CountDownTimer(halfHour, fifteenMin) {
+        timer = new CountDownTimer(3*60*1000, 60*1000) {
 
-            public void onTick(long millisUntilFinished) {AlarmReceiver.startRingtone();} //Kan användas för att skriva ut varje tick
+            public void onTick(long millisUntilFinished)
+            {
+                AlarmReceiver.startRingtone();
+                Log.i("TICK", "Tick");
+            } //Kan användas för att skriva ut varje tick
 
             public void onFinish() {
                 AlarmReceiver.startRingtone();
