@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class WakeUpActivity extends AppCompatActivity {
+public class WakeUpActivity extends AppCompatActivity implements TimeTables{
 
     private SharedPreferences sharedPreferences;
     private ListView wakeUpTimeTableListView;
@@ -45,7 +45,8 @@ public class WakeUpActivity extends AppCompatActivity {
      * createList() kommer att lägga till samtliga element ifrån wakeUpTimeTable arrayen till
      * listView:n i aktiviteten activity_wake_up.
      */
-    private void createList()
+    @Override
+    public void createList()
     {
         final String[] wakeUpTimeTable = {"05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00"};
 
@@ -86,7 +87,15 @@ public class WakeUpActivity extends AppCompatActivity {
 
     }//End of createList
 
-    private ArrayList<TextView> stringArrToTextList(String[] timeTable) {
+
+
+
+    /**
+     * stringArrToTextList(timeTable) tar in en string array och returnerar
+     * en lista av TextViews innehållandes alla strings i arrayen.
+     */
+    @Override
+    public ArrayList<TextView> stringArrToTextList(String[] timeTable) {
         ArrayList<TextView> tList = new ArrayList<>();
 
         for (String aTimeTable : timeTable) {
@@ -97,6 +106,8 @@ public class WakeUpActivity extends AppCompatActivity {
 
         return tList;
     }
+
+
 
 
     public void button_next(View view)
@@ -124,22 +135,4 @@ public class WakeUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
-    /*
-    /**
-     * Anropas för att iterera genom ListView:n och avmarkera de rader som är markerade.
-     * Används vid de tillfällen då man inte vill ha två rader markerade i samma View.
-     * Argumentet ska vara den rad som användaren har tryckt på.
-     */
-    /*private void unSelectList(View clickedRow){
-        int numOfChildren = wakeUpTimeTableListView.getChildCount();
-        Log.i("Count", String.valueOf(numOfChildren));
-
-        for(int i = 0; i < numOfChildren; i++){
-            View row = wakeUpTimeTableListView.getChildAt(i);
-
-            //Kontrollerar om den nuvarande View:n är samma View som den användaren klickade på.
-            if(row != clickedRow)
-                row.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
-        }
-    }//End of unSelectedList*/
 }

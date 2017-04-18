@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class SleepActivity extends AppCompatActivity {
+public class SleepActivity extends AppCompatActivity implements TimeTables{
 
     private SharedPreferences sharedPreferences;
     private ListView sleepTimeTableListView;
@@ -46,7 +46,8 @@ public class SleepActivity extends AppCompatActivity {
      * createList() kommer att lägga till samtliga element ifrån sleepTimeTable arrayen till
      * listView:n i aktiviteten activity_sleep.
      */
-    private void createList(){
+    @Override
+    public void createList(){
         String[] sleepTimeTable = {"17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00"};
         final CustomAdapter arrayAdapter = new CustomAdapter(this, stringArrToTextList(sleepTimeTable));
         sleepTimeTableListView.setAdapter(arrayAdapter);
@@ -109,7 +110,12 @@ public class SleepActivity extends AppCompatActivity {
 
 
 
-    private ArrayList<TextView> stringArrToTextList(String[] timeTable) {
+    /**
+     * stringArrToTextList(timeTable) tar in en string array och returnerar
+     * en lista av TextViews innehållandes alla strings i arrayen.
+     */
+    @Override
+    public ArrayList<TextView> stringArrToTextList(String[] timeTable) {
         ArrayList<TextView> tList = new ArrayList<>();
 
         for (String aTimeTable : timeTable) {
@@ -127,22 +133,4 @@ public class SleepActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
-
-
-
-
-    /*/**
-     * Anropas för att iterera genom ListView:n och avmarkera de rader som är markerade.
-     * Används vid de tillfällen då man inte vill ha två rader markerade i samma View.
-     * Argumentet ska vara den rad som användaren har tryckt på.
-     */
-    /*private void unSelectList(View view){
-        int count = sleepTimeTableListView.getChildCount();
-
-        for(int i = 0; i < count; i++){
-            View row = sleepTimeTableListView.getChildAt(i);
-            if(row != view)
-                row.setBackgroundColor(getResources().getColor(R.color.colorDefaultRow));
-        }
-    }//End of unSelectList*/
 }
