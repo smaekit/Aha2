@@ -8,8 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
-public class AlertActivity extends AppCompatActivity
-{
+public class AlertActivity extends AppCompatActivity{
+    //TODO: Implementera OBTBrushListener och dess funktioner för tandborstaktivitet
+
     private static CountDownTimer timer;
     private final long fifteenMin = 15*60*1000;
     private final long halfHour = 30*60*1000;

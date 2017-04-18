@@ -16,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
-        <!--TODO: Göra en back-up på vårt konto eller på användarens?-->
+
+        <meta-data android:name="com.obt.sdk.ApplicationId" android:value="@string/obt_sdk_app_id"/>
+
+        <meta-data android:name="com.obt.sdk.ApplicationKey" android:value="@string/obt_sdk_app_key"/>
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
