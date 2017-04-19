@@ -28,8 +28,8 @@ public class InstructionsActivity extends AppCompatActivity
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         imageButton_PlayVideo = (ImageButton)findViewById(R.id.imageButton_Play);
 
-        TextView textView =(TextView)findViewById(R.id.textView_InfoMessage);
-        textView.setText("Hej "+name+"!\nHär är en instruktionsvideo, starta den genom att trycka på play");
+        //TextView textView =(TextView)findViewById(R.id.textView_InfoMessage);
+        //textView.setText("Hej "+name+"!\nStarta videoklippet ovan genom att trycka på start-knappen.");
         initiateVideoPlayer();
 
     } //End onCreate
@@ -40,7 +40,7 @@ public class InstructionsActivity extends AppCompatActivity
     private void initiateVideoPlayer()
     {
         videoV = (VideoView)findViewById(R.id.videoView);
-        videoV.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.normal);
+        videoV.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.recording);
 
         MediaController mediaController = new MediaController(this);
         videoV.setMediaController(mediaController);

@@ -18,14 +18,16 @@ tools:context="com.marcusjakobsson.aha.WakeUpActivity"
             android:layout_height="130dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@color/colorDisco"
+            android:background="@color/colorAccent"
             android:contentDescription="@string/wakeUpTime"
             android:gravity="center"
             android:text="@string/wakeUpTime"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="50sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:elevation="4dp"
+            android:translationZ="10dp"/>
 
         <ListView
             android:id="@+id/wakeUpTimeTableListView"
@@ -37,5 +39,6 @@ tools:context="com.marcusjakobsson.aha.WakeUpActivity"
 
     </RelativeLayout>
 
-    <include layout="@layout/bottom_navigation" />
+    <include layout="@layout/bottom_navigation"
+        android:elevation="8dp"/>
 </LinearLayout>

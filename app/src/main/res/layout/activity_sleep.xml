@@ -16,16 +16,18 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:gravity="center"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:background="@color/colorDisco"
+            android:background="@color/colorSleep"
             android:contentDescription="@string/SleepTime"
+            android:gravity="center"
             android:text="@string/SleepTime"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="50sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:elevation="4dp"
+            android:translationZ="10dp"/>
 
         <ListView
             android:id="@+id/sleepTimeTableListView"
@@ -37,5 +39,5 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/bottom_navigation" />
+    <include layout="@layout/bottom_navigation"/>
 </LinearLayout>

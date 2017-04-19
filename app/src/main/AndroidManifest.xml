@@ -35,10 +35,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".WakeUpActivity"
+            android:theme="@style/Theme_ListsW"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SleepActivity"
             android:label="@string/title_activity_sleep"
+            android:theme="@style/Theme_ListsS"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SummaryActivity"

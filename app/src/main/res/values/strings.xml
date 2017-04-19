@@ -22,4 +22,5 @@
     <string name="play">Spela upp video</string>
     <string name="obt_sdk_app_id">78bcd71c-8db7-4dc6-b85d-eb25d563625d</string>
     <string name="obt_sdk_app_key">ca26167f-3398-475e-8d0f-94a3a4b90b99</string>
+    <string name="instruction">Instruktionsvideo</string>
 </resources>

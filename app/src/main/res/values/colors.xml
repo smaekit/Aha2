@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#921d56</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#393A5C</color>
+    <color name="colorSleep">#1B1E35</color>
     <color name="colorDisco">#921d56</color>
     <color name="colorDefaultRow">#A5FFFFFF</color>
 </resources>
