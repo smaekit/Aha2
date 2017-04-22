@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     private ImageButton button_erase;
     private SharedPreferences sharedPreferences;
 
+    //TODO: Starta på senaste skärm
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
