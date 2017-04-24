@@ -27,6 +27,6 @@ public class MyOBTSdkAuthListener implements OBTSdkAuthorizationListener {
 
     @Override
     public void onSdkAuthorizationFailed(int i) {
-        Log.i("MyOBTSdkAuthListener", "failed"+i);
+        Log.i("MyOBTSdkAuthListener", "failed "+i);
     }
 }
