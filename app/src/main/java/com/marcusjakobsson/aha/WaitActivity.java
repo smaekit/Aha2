@@ -30,7 +30,7 @@ public class WaitActivity extends AppCompatActivity implements OBTCloudListener{
         setContentView(R.layout.activity_wait);
         Log.i("WAIT", "Here");
 
-        new CountDownTimer(900000, 120000)
+        /*new CountDownTimer(900000, 120000)
         {
 
             @Override
@@ -42,7 +42,7 @@ public class WaitActivity extends AppCompatActivity implements OBTCloudListener{
             public void onFinish() {
                 OBTSDK.fetchUserSessions(0, WaitActivity.this);
             }
-        }.start();
+        }.start();*/
 
     }//End of onCreate
 

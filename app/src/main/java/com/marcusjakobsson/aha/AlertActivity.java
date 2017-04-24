@@ -7,11 +7,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
-public class AlertActivity extends AppCompatActivity{
+import com.oralb.sdk.OBTBrush;
+import com.oralb.sdk.OBTBrushListener;
+import com.oralb.sdk.OBTSDK;
+
+import java.util.List;
+
+public class AlertActivity extends AppCompatActivity implements OBTBrushListener{
     //TODO: Implementera OBTBrushListener och dess funktioner för tandborstaktivitet
 
     private static CountDownTimer timer;
+    private static CountDownTimer timerBrush;
     private final long fifteenMin = 15*60*1000;
     private final long halfHour = 30*60*1000;
 
@@ -19,7 +27,7 @@ public class AlertActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alert);
+        setContentView(R.layout.activity_wait);
 
         //Samtliga flaggor tillåter denna aktivitet att visas när skärmen är släckt i locked mode
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON|
@@ -27,23 +35,34 @@ public class AlertActivity extends AppCompatActivity{
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
+        timerBrush = new CountDownTimer(60000, 10000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                AlarmReceiver.startRingtone();
+            }
 
+            @Override
+            public void onFinish() {
+                stopAlarm();
+            }
+        };
 
         //30000 ms är en felmarginal för att det sista ticket ska låta
-        timer = new CountDownTimer(halfHour, fifteenMin - 30000)
+        timer = new CountDownTimer(10000, 1000)
         {
 
             @Override
             public void onTick(long millisUntilFinished) //Var 15:e minut kommer följande exekveras
             {
                 Log.i("TICK", "Tick "+millisUntilFinished);
-                AlarmReceiver.startRingtone();
+                //AlarmReceiver.startRingtone();
             } //Kan användas för att skriva ut varje tick
 
             public void onFinish() //När timern är färdig kommer följande exekveras
             {
                 Log.i("TICK", "Finished!");
-                stopAlarm();
+                setContentView(R.layout.activity_alert);
+                timerBrush.start();
             }
 
         }.start();
@@ -55,9 +74,112 @@ public class AlertActivity extends AppCompatActivity{
     {
         AlarmReceiver.stopRingtone();
         timer.cancel();
+        timerBrush.cancel();
 
-        Intent intent = new Intent(getApplicationContext(), WaitActivity.class);
+        Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
         startActivity(intent);
+    }
+
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Set this activity as OBTBrushListener
+        OBTSDK.setOBTBrushListener(this);
+    }
+
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Remove the OBTBrushListener
+        OBTSDK.setOBTBrushListener(null);
+    }
+
+
+
+
+    @Override
+    public void onNearbyBrushesFoundOrUpdated(List<OBTBrush> nearbyBrushes) {
+        Log.i("found brush", "" + nearbyBrushes.size());
+        Toast.makeText(this, "Found a brush!", Toast.LENGTH_SHORT).show();
+        if (!nearbyBrushes.isEmpty()){
+            // Connect to first Oral-B Toothbrush
+            try{
+                Log.i("Hejsan", "TJABBA");
+                OBTSDK.connectToothbrush(nearbyBrushes.get(0), false);
+
+            }
+            catch(Exception e)
+            {
+                Toast.makeText(this, "Could not connect!", Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+    }
+
+    @Override
+    public void onBluetoothError() {
+
+    }
+
+    @Override
+    public void onBrushDisconnected() {
+        Log.i("BRUSH", "Brush disconnected");
+        //OBTSDK.authorizeApplication(userAuthListener);
+
+    }
+
+    @Override
+    public void onBrushConnected() {
+        Toast.makeText(this, "Brush is connected", Toast.LENGTH_SHORT).show();
+        stopAlarm();
+    }
+
+    @Override
+    public void onBrushConnecting() {
+        Log.i("BRUSH", "Brush connecting");
+    }
+
+    @Override
+    public void onBrushingTimeChanged(long l) {
+        Log.i("TIME", String.valueOf(l/1000));
+
+    }
+
+    @Override
+    public void onBrushingModeChanged(int i) {
+
+    }
+
+    @Override
+    public void onBrushStateChanged(int i) {
+
+    }
+
+    @Override
+    public void onRSSIChanged(int i) {
+
+    }
+
+    @Override
+    public void onBatteryLevelChanged(float v) {
+
+    }
+
+    @Override
+    public void onSectorChanged(int i) {
+
+    }
+
+    @Override
+    public void onHighPressureChanged(boolean b) {
+
     }
 
 
