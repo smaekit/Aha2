@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.oralb.sdk.OBTBrushListener;
@@ -31,6 +32,8 @@ public class FinalActivity extends MyOBTBrushListener{
 
     MyOBTSdkAuthListener authListener;
     AlertActivity alertActivity;
+    ImageView catImage;
+    ImageButton refreshButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,15 +41,30 @@ public class FinalActivity extends MyOBTBrushListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
 
+        catImage = (ImageView)findViewById(R.id.cat_image);
+
         authListener = new MyOBTSdkAuthListener();
         alertActivity = new AlertActivity();
 
         //Call to initialize the OBTSDK
         Log.i("main", "OBT SDK initialized");
-        OBTSDK.authorizeSdk(authListener);
+        authorizeSDK();
     } //End onCreate
 
 
+
+    private void authorizeSDK()
+    {
+        OBTSDK.authorizeSdk(authListener);
+    }
+
+
+
+    public void button_Refresh(View view)
+    {
+        OBTSDK.disconnectToothbrush();
+        authorizeSDK();
+    }
 
 
 

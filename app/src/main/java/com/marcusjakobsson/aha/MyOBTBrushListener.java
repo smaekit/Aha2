@@ -3,7 +3,6 @@ package com.marcusjakobsson.aha;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.oralb.sdk.OBTBrush;
@@ -60,7 +59,7 @@ public class MyOBTBrushListener extends AppCompatActivity implements OBTBrushLis
 
     @Override
     public void onBluetoothError() {
-        Toast.makeText(this, "Ett bluetooth problem uppstod, var vänlig star ta om bluetooth och försök igen", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Ett bluetooth problem uppstod, var vänlig starta om bluetooth och försök igen", Toast.LENGTH_LONG).show();
 
 
     }

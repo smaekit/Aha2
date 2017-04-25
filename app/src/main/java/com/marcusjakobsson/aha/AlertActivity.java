@@ -3,17 +3,11 @@ package com.marcusjakobsson.aha;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.oralb.sdk.OBTBrush;
-import com.oralb.sdk.OBTBrushListener;
-import com.oralb.sdk.OBTSDK;
-
-import java.util.List;
 
 public class AlertActivity extends MyOBTBrushListener{
 
