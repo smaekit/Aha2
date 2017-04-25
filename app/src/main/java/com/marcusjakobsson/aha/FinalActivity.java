@@ -21,10 +21,9 @@ public class FinalActivity extends MyOBTBrushListener{
 
     //TODO: Vid fel under uppkoppling till ORAL-Bs SDK, visa felmeddelande till användare
     //TODO: Erbjud möjligheten att försöka ansluta till ORAL-B på nytt
-    //TODO: Visa att man måste vara uppkopplad till Wi-fi
 
 
-    //TODO: Berätta för anv. att ansluta tandborste
+    //TODO: Berätta för anv. att ansluta tandborste (Vy)
     //TODO: Kolla om Wi-fi är på
     //TODO: Kolla om Bluetooth är på
     //TODO: Kolla om Tandborsten har kopplats, om den inte är så ska man via ett knapptryck koppla om och om igen
