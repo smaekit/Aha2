@@ -16,7 +16,6 @@ import com.oralb.sdk.OBTSDK;
 import java.util.List;
 
 public class AlertActivity extends AppCompatActivity implements OBTBrushListener{
-    //TODO: Implementera OBTBrushListener och dess funktioner för tandborstaktivitet
 
     private static CountDownTimer timer;
     private static CountDownTimer timerBrush;

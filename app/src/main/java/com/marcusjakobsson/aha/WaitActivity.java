@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class WaitActivity extends AppCompatActivity implements OBTCloudListener{
-    //TODO: Implementera funktioner som hämtar användardata/sessionsdata från ORAL-B
-    MyOBTSdkAuthListener authListener;
     OBTUserAuthorizationListener userAuthListener;
 
 
