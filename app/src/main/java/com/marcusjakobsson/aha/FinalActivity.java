@@ -22,10 +22,12 @@ public class FinalActivity extends MyOBTBrushListener{
     //TODO: Kolla om Tandborsten har kopplats, om den inte är så ska man via ett knapptryck koppla om och om igen
     //TODO: Om tandborste har kopplats sen tidigare, stoppa scan och starta vid larm
 
+    //TODO: Gå tillbaka till föregående vyer för att ändra tid osv.
+
     MyOBTSdkAuthListener authListener;
     AlertActivity alertActivity;
     ImageView catImage;
-    ImageButton refreshButton;
+    private static ImageButton refreshButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -53,6 +55,21 @@ public class FinalActivity extends MyOBTBrushListener{
 
 
 
+
+    public static void showButton(){
+        refreshButton.setVisibility(View.VISIBLE);
+    }
+
+
+
+
+    public static void hideButton(){
+        refreshButton.setVisibility(View.GONE);
+    }
+
+
+
+
     public void button_Refresh(View view)
     {
         OBTSDK.disconnectToothbrush();
@@ -62,6 +79,7 @@ public class FinalActivity extends MyOBTBrushListener{
 
 
     public void button_back(View view){
+        OBTSDK.disconnectToothbrush();
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
         startActivity(intent);
     }

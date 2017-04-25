@@ -44,7 +44,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="40dp"
-            android:background="@Null"
+            android:background="@null"
             android:onClick="button_Refresh"
             android:visibility="gone"
             app:srcCompat="@drawable/refresh" />
