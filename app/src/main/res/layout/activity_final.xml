@@ -37,6 +37,18 @@
             android:paddingTop="90dp"
             app:srcCompat="@drawable/cat" />
 
+        <ImageButton
+            android:id="@+id/button_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="40dp"
+            android:background="@Null"
+            android:onClick="button_Refresh"
+            android:visibility="gone"
+            app:srcCompat="@drawable/refresh" />
+
     </RelativeLayout>
 
     <android.support.design.widget.BottomNavigationView
