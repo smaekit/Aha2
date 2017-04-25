@@ -22,6 +22,11 @@ public class FinalActivity extends MyOBTBrushListener{
     //TODO: Erbjud möjligheten att försöka ansluta till ORAL-B på nytt
     //TODO: Visa att man måste vara uppkopplad till Wi-fi
 
+
+    //TODO: Kolla om Wi-fi är på
+    //TODO: Kolla om Bluetooth är på
+    //TODO: Kolla om Tandborsten har kopplats, om den inte är så ska man via ett knapptryck koppla om och om igen
+
     MyOBTSdkAuthListener authListener;
     AlertActivity alertActivity;
 
@@ -63,31 +68,6 @@ public class FinalActivity extends MyOBTBrushListener{
 
     @Override
     public void onBackPressed() {
-    }
-
-    private class MyOBTSdkAuthListener implements OBTSdkAuthorizationListener {
-        @Override
-        public void onSdkAuthorizationSuccess() {
-            Log.i("MyOBTSdkAuthListener", "success");
-
-            try {
-                OBTSDK.startScanning();
-                Log.i("Scan", "Scanning...");
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.i("Scan", "Not scanning...");
-            }
-        }
-
-        @Override
-        public void onSdkAuthorizationFailed(int i) {
-
-            if(i==2){
-                Intent intent = new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK);
-                startActivity(intent);
-            }
-            Log.i("MyOBTSdkAuthListener", "failed"+i);
-        }
     }
 
 } //End FinalActivity

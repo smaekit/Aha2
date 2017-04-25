@@ -1,6 +1,7 @@
 package com.marcusjakobsson.aha;
 
 import android.app.Activity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by konstantin_ay on 2017-04-25.
  */
 
-public class MyOBTBrushListener extends Activity implements OBTBrushListener {
+public class MyOBTBrushListener extends AppCompatActivity implements OBTBrushListener {
 
     @Override
     public void onResume() {
