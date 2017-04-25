@@ -1,21 +1,14 @@
 package com.marcusjakobsson.aha;
 
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.oralb.sdk.OBTBrushListener;
 import com.oralb.sdk.OBTSDK;
-import com.oralb.sdk.OBTSdkAuthorizationListener;
 
 public class FinalActivity extends MyOBTBrushListener{
 
@@ -41,6 +34,7 @@ public class FinalActivity extends MyOBTBrushListener{
         setContentView(R.layout.activity_final);
 
         catImage = (ImageView)findViewById(R.id.cat_image);
+        refreshButton = (ImageButton)findViewById(R.id.button_refresh);
 
         authListener = new MyOBTSdkAuthListener();
         alertActivity = new AlertActivity();
