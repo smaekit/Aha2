@@ -15,7 +15,7 @@ import com.oralb.sdk.OBTSDK;
 
 import java.util.List;
 
-public class AlertActivity extends AppCompatActivity implements OBTBrushListener{
+public class AlertActivity extends MyOBTBrushListener{
 
     private static CountDownTimer timer;
     private static CountDownTimer timerBrush;
@@ -83,54 +83,6 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
 
 
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        // Set this activity as OBTBrushListener
-        OBTSDK.setOBTBrushListener(this);
-    }
-
-
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // Remove the OBTBrushListener
-        OBTSDK.setOBTBrushListener(null);
-    }
-
-
-
-
-    @Override
-    public void onNearbyBrushesFoundOrUpdated(List<OBTBrush> nearbyBrushes) {
-        Log.i("found brush", "" + nearbyBrushes.size());
-        Toast.makeText(this, "Found a brush!", Toast.LENGTH_SHORT).show();
-        if (!nearbyBrushes.isEmpty()){
-            // Connect to first Oral-B Toothbrush
-            try{
-                Log.i("Hejsan", "TJABBA");
-                OBTSDK.connectToothbrush(nearbyBrushes.get(0), false);
-
-            }
-            catch(Exception e)
-            {
-                Toast.makeText(this, "Kunde inte ansluta tandborsten!", Toast.LENGTH_SHORT).show();
-            }
-
-        }
-
-    }
-
-    @Override
-    public void onBluetoothError() {
-        Toast.makeText(this, "Ett bluetooth problem uppstod, var vänlig star ta om bluetooth och försök igen", Toast.LENGTH_LONG).show();
-
-
-    }
-
     @Override
     public void onBrushDisconnected() {
         Log.i("BRUSH", "Brush disconnected");
@@ -147,17 +99,6 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
 
     }
 
-    @Override
-    public void onBrushConnected() {
-        Toast.makeText(this, "Tandborsten är ansluten", Toast.LENGTH_SHORT).show();
-        //TODO lägga till en datavy vid connect som visar pressure, tid, mode. Kan vara gömd i kattvyn
-
-    }
-
-    @Override
-    public void onBrushConnecting() {
-        Log.i("BRUSH", "Brush connecting");
-    }
 
     @Override
     public void onBrushingTimeChanged(long l) {
@@ -170,37 +111,6 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
 
     }
 
-    @Override
-    public void onBrushingModeChanged(int i) {
-
-    }
-
-    @Override
-    public void onBrushStateChanged(int i) {
-
-    }
-
-    @Override
-    public void onRSSIChanged(int i) {
-
-    }
-
-    @Override
-    public void onBatteryLevelChanged(float v) {
-
-    }
-
-    @Override
-    public void onSectorChanged(int i) {
-
-    }
-
-    @Override
-    public void onHighPressureChanged(boolean b) {
-
-    }
-
-
 
 
     //Anropas när användaren trycker på tandborsten och kommer omdirigera användare till "sovande katt"-vyn
@@ -208,7 +118,6 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
     {
         stopAlarm();
     }
-
 
 
 

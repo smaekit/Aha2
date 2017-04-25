@@ -40,6 +40,7 @@ public class MyOBTBrushListener extends Activity implements OBTBrushListener {
     @Override
     public void onNearbyBrushesFoundOrUpdated(List<OBTBrush> nearbyBrushes) {
         Log.i("found brush", "" + nearbyBrushes.size());
+        Toast.makeText(this, "Found a brush!", Toast.LENGTH_SHORT).show();
         if (!nearbyBrushes.isEmpty()){
             // Connect to first Oral-B Toothbrush
             try{
@@ -49,6 +50,7 @@ public class MyOBTBrushListener extends Activity implements OBTBrushListener {
             }
             catch(Exception e)
             {
+                Toast.makeText(this, "Kunde inte ansluta tandborsten!", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -57,6 +59,8 @@ public class MyOBTBrushListener extends Activity implements OBTBrushListener {
 
     @Override
     public void onBluetoothError() {
+        Toast.makeText(this, "Ett bluetooth problem uppstod, var vänlig star ta om bluetooth och försök igen", Toast.LENGTH_LONG).show();
+
 
     }
 
@@ -69,6 +73,9 @@ public class MyOBTBrushListener extends Activity implements OBTBrushListener {
 
     @Override
     public void onBrushConnected() {
+        Toast.makeText(this, "Tandborsten är ansluten", Toast.LENGTH_SHORT).show();
+        //TODO lägga till en datavy vid connect som visar pressure, tid, mode. Kan vara gömd i kattvyn
+
     }
 
     @Override
