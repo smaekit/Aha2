@@ -22,6 +22,8 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
     private static CountDownTimer timerBrush;
     private final long fifteenMin = 15*60*1000;
     private final long halfHour = 30*60*1000;
+    private boolean doneBrushing = false;
+    private long validBrushingSession = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -116,7 +118,7 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
             }
             catch(Exception e)
             {
-                Toast.makeText(this, "Could not connect!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Kunde inte ansluta tandborsten!", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -125,20 +127,32 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
 
     @Override
     public void onBluetoothError() {
+        Toast.makeText(this, "Ett bluetooth problem uppstod, var vänlig star ta om bluetooth och försök igen", Toast.LENGTH_LONG).show();
+
 
     }
 
     @Override
     public void onBrushDisconnected() {
         Log.i("BRUSH", "Brush disconnected");
+        if(doneBrushing)
+        {
+            stopAlarm();
+        }else
+        {
+            Toast.makeText(this, "Du uppnådde inte den rekommenderade tandborstningstiden", Toast.LENGTH_LONG).show();
+            //TODO visa detta på skärmen.
+        }
+
         //OBTSDK.authorizeApplication(userAuthListener);
 
     }
 
     @Override
     public void onBrushConnected() {
-        Toast.makeText(this, "Brush is connected", Toast.LENGTH_SHORT).show();
-        stopAlarm();
+        Toast.makeText(this, "Tandborsten är ansluten", Toast.LENGTH_SHORT).show();
+        //TODO lägga till en datavy vid connect som visar pressure, tid, mode. Kan vara gömd i kattvyn
+
     }
 
     @Override
@@ -149,6 +163,11 @@ public class AlertActivity extends AppCompatActivity implements OBTBrushListener
     @Override
     public void onBrushingTimeChanged(long l) {
         Log.i("TIME", String.valueOf(l/1000));
+        //TODO ladda upp användarens ej slutgiltiga eller slutgiltiga tb-tider.
+        if (l/1000 > validBrushingSession)
+        {
+            doneBrushing = true; //En godkänd tb-session
+        }
 
     }
 
