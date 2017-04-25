@@ -1,10 +1,13 @@
 package com.marcusjakobsson.aha;
 
+import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.speech.RecognizerIntent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
+import com.oralb.sdk.OBTSDK;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -41,6 +46,12 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        try {
+            OBTSDK.initialize(this);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
         button_Speak = (ImageButton) findViewById(R.id.button_mic);
         relativeLayout_main = (RelativeLayout)findViewById(R.id.relativeLayout_main);
         relativeLayout_main.setOnClickListener(this);

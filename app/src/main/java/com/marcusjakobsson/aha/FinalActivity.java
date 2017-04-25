@@ -23,9 +23,11 @@ public class FinalActivity extends MyOBTBrushListener{
     //TODO: Visa att man måste vara uppkopplad till Wi-fi
 
 
+    //TODO: Berätta för anv. att ansluta tandborste
     //TODO: Kolla om Wi-fi är på
     //TODO: Kolla om Bluetooth är på
     //TODO: Kolla om Tandborsten har kopplats, om den inte är så ska man via ett knapptryck koppla om och om igen
+    //TODO: Om tandborste har kopplats sen tidigare, stoppa scan och starta vid larm
 
     MyOBTSdkAuthListener authListener;
     AlertActivity alertActivity;
@@ -39,19 +41,9 @@ public class FinalActivity extends MyOBTBrushListener{
         authListener = new MyOBTSdkAuthListener();
         alertActivity = new AlertActivity();
 
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
-        try {
-            //Call to initialize the OBTSDK
-            OBTSDK.initialize(this);
-            Log.i("main", "OBT SDK initialized");
-            OBTSDK.authorizeSdk(authListener);
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //Call to initialize the OBTSDK
+        Log.i("main", "OBT SDK initialized");
+        OBTSDK.authorizeSdk(authListener);
     } //End onCreate
 
 

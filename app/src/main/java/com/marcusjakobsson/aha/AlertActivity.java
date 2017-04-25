@@ -36,7 +36,7 @@ public class AlertActivity extends MyOBTBrushListener{
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        timerBrush = new CountDownTimer(60000, 10000) {
+        timerBrush = new CountDownTimer(120000, 10000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 AlarmReceiver.startRingtone();
