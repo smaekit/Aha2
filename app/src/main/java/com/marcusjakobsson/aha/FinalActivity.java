@@ -20,9 +20,9 @@ public class FinalActivity extends MyOBTBrushListener{
 
     //TODO: Gå tillbaka till föregående vyer för att ändra tid osv.
 
-    MyOBTSdkAuthListener authListener;
-    AlertActivity alertActivity;
-    SharedPreferences sharedPreferences;
+    private MyOBTSdkAuthListener authListener;
+    private AlertActivity alertActivity;
+    private SharedPreferences sharedPreferences;
     private static ImageView catImage;
     private static ImageButton refreshButton;
 
@@ -33,7 +33,21 @@ public class FinalActivity extends MyOBTBrushListener{
         setContentView(R.layout.activity_final);
 
         catImage = (ImageView)findViewById(R.id.cat_image);
+        refreshButton = (ImageButton)findViewById(R.id.button_refresh);
 
+        controlConnections();
+
+        authListener = new MyOBTSdkAuthListener();
+        alertActivity = new AlertActivity();
+
+        //Call to initialize the OBTSDK
+        Log.i("main", "OBT SDK initialized");
+        authorizeSDK();
+    } //End onCreate
+
+
+
+    private void controlConnections() {
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
@@ -47,22 +61,14 @@ public class FinalActivity extends MyOBTBrushListener{
         }
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-        if (!wifi.isConnected()) {
+        if (activeNetwork == null) { // connected to the internet
             Intent intent = new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK);
             startActivity(intent);
         }
+    }
 
-        refreshButton = (ImageButton)findViewById(R.id.button_refresh);
-
-        authListener = new MyOBTSdkAuthListener();
-        alertActivity = new AlertActivity();
-
-        //Call to initialize the OBTSDK
-        Log.i("main", "OBT SDK initialized");
-        authorizeSDK();
-    } //End onCreate
 
 
 

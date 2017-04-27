@@ -1,12 +1,17 @@
 package com.marcusjakobsson.aha;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import com.oralb.sdk.OBTSDK;
 
 public class SummaryActivity extends AppCompatActivity {
     private static MyAlarmManager wakeUpAlarm;
@@ -44,6 +49,13 @@ public class SummaryActivity extends AppCompatActivity {
     public void button_next(View view)
     {
         setUpAlarm();
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
+        try {
+            OBTSDK.initialize(this);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }//End of button_next
 
 

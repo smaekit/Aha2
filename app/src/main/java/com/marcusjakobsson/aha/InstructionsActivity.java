@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.MediaController;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 public class InstructionsActivity extends AppCompatActivity
@@ -25,7 +24,7 @@ public class InstructionsActivity extends AppCompatActivity
 
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
-        String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
+        //String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         imageButton_PlayVideo = (ImageButton)findViewById(R.id.imageButton_Play);
 
         //TextView textView =(TextView)findViewById(R.id.textView_InfoMessage);

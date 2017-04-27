@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by konstantin_ay on 2017-04-18.
  */
 
-public interface TimeTables{
+interface TimeTables{
 
 
     /**

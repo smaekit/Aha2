@@ -23,5 +23,7 @@
     <string name="obt_sdk_app_id">78bcd71c-8db7-4dc6-b85d-eb25d563625d</string>
     <string name="obt_sdk_app_key">ca26167f-3398-475e-8d0f-94a3a4b90b99</string>
     <string name="instruction">Instruktionsvideo</string>
-    <string name="anslut_till_tandborste">ANSLUT TILL TANDBORSTE</string>
+    <string name="brush_description">En bild på en tandborste som indikerar att du bör borsta tänderna.</string>
+    <string name="refresh_description">En roterande pil som vid knapptryck kommer försöka koppla upp till tandborste på nytt.</string>
+    <string name="sleeping_description">Söt katt som väntar på att du ska borsta tänderna snart.</string>
 </resources>

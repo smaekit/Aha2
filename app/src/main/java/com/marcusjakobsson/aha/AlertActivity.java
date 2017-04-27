@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -17,7 +16,7 @@ public class AlertActivity extends MyOBTBrushListener{
     private final long halfHour = 30*60*1000;
     private final long hour = 60*60*1000;
     private boolean doneBrushing = false;
-    private long validBrushingSession = 30;
+    private final long validBrushingSession = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,7 +64,7 @@ public class AlertActivity extends MyOBTBrushListener{
 
 
 
-    public void stopAlarm()
+    private void stopAlarm()
     {
         AlarmReceiver.stopRingtone();
         timer.cancel();
