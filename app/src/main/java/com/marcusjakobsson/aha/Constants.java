@@ -12,6 +12,7 @@ public class Constants {
     private static MyAlarmManager wakeUpAlarm;
     private static MyAlarmManager sleepAlarm;
     private static Ringtone ringtone;
+    private static boolean initialized = false;
 
 
 
@@ -67,5 +68,19 @@ public class Constants {
 
     public static void setRingtone(Ringtone rT){
         ringtone = rT;
+    }
+
+
+
+
+    public static boolean isInitialized(){
+        return initialized;
+    }
+
+
+
+
+    public static void setInitialized(boolean ok){
+        initialized = ok;
     }
 }

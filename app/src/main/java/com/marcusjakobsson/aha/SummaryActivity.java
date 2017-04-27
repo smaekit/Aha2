@@ -49,6 +49,15 @@ public class SummaryActivity extends AppCompatActivity {
     public void button_next(View view)
     {
         setUpAlarm();
+
+        if(!Constants.isInitialized())
+            initializeSDK();
+    }//End of button_next
+
+
+
+
+    private void initializeSDK() {
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
         try {
@@ -56,7 +65,8 @@ public class SummaryActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-    }//End of button_next
+        Constants.setInitialized(true);
+    }
 
 
 
