@@ -29,7 +29,7 @@ public class MyOBTSdkAuthListener implements OBTSdkAuthorizationListener{
     @Override
     public void onSdkAuthorizationFailed(int i) {
         FinalActivity.showButton();
-
+        FinalActivity.catStatus("FAILED");
         Log.i("MyOBTSdkAuthListener", "failed"+i);
     }
 }

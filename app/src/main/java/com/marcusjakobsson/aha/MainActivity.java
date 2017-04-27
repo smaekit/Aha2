@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -38,20 +39,14 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     private ImageButton button_erase;
     private SharedPreferences sharedPreferences;
 
-    //TODO: Starta på senaste skärm
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        try {
-            OBTSDK.initialize(this);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        initializeSDK();
+
         button_Speak = (ImageButton) findViewById(R.id.button_mic);
         relativeLayout_main = (RelativeLayout)findViewById(R.id.relativeLayout_main);
         relativeLayout_main.setOnClickListener(this);
@@ -71,9 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             button_erase.setAlpha(1f);
             button_ok.setAlpha(1f);
         }
-
-
-
 
         //Ändrar transparens för button_OK/Erase när en korrekt input är inskrivet i namn rutan.
         editText_enterName.addTextChangedListener(new TextWatcher()
@@ -109,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             }
         }); //End addTextChangedListener
 
-
-
         //När mikrofon knappen trycks ner så tillåter den användaren att prata in sitt namn
         button_Speak.setOnClickListener(new View.OnClickListener()
         {
@@ -136,6 +126,23 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         });//End setOnClickListener
 
     } //End onCreate
+
+
+
+
+    private void initializeSDK() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
+        if(!OBTSDK.isOnline(this)){
+            try {
+                OBTSDK.initialize(this);
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 
 
     //RegEx för namn tar in ett namn som en sträng

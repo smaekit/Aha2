@@ -6,7 +6,7 @@
     <string name="next">Nästa</string>
     <string name="back">Tillbaka</string>
     <string name="title_activity_sleep">SleepActivity</string>
-    <string name="SleepTime">Välj en tid då du går och lägger dig</string>
+    <string name="SleepTime">När går du och lägger dig?</string>
     <string name="title_activity_summary">SummaryActivity</string>
     <string name="summary">Detta är din sammanfattning:</string>
     <string name="name">NAMN:</string>
