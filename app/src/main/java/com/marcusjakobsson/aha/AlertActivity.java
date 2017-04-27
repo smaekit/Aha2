@@ -31,7 +31,7 @@ public class AlertActivity extends MyOBTBrushListener{
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        timerBrush = new CountDownTimer(120000, 10000) {
+        timerBrush = new CountDownTimer(halfHour, tenMin - 30*60*1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 Constants.getRingtone().play();
@@ -43,14 +43,13 @@ public class AlertActivity extends MyOBTBrushListener{
             }
         };
 
-        timer = new CountDownTimer(10000, 1000)
+        timer = new CountDownTimer(hour, halfHour)
         {
 
             @Override
             public void onTick(long millisUntilFinished) //Var 15:e minut kommer följande exekveras
             {
                 Log.i("TICK", "Tick "+millisUntilFinished);
-                //AlarmReceiver.startRingtone();
             } //Kan användas för att skriva ut varje tick
 
             public void onFinish() //När timern är färdig kommer följande exekveras
