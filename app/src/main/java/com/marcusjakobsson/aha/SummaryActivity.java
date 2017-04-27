@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.oralb.sdk.OBTSDK;
 
 public class SummaryActivity extends AppCompatActivity {
-    private static MyAlarmManager wakeUpAlarm;
-    private static MyAlarmManager sleepAlarm;
+    //private static MyAlarmManager wakeUpAlarm;
+    //private static MyAlarmManager sleepAlarm;
     private SharedPreferences sharedPreferences;
     private TextView name;
     private TextView wakeUpTime;
@@ -34,7 +34,7 @@ public class SummaryActivity extends AppCompatActivity {
         sleepTime = (TextView) findViewById(R.id.text_sleep);
 
         //Initierar samtliga textViews så de visar inmatad information på skärmen
-        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        sharedPreferences = Constants.getSharedPreferences();
         name.setText(sharedPreferences.getString("name",""));
         wakeUpTime.setText(sharedPreferences.getString("wakeUpTime",""));
         sleepTime.setText(sharedPreferences.getString("sleepTime",""));
@@ -68,8 +68,8 @@ public class SummaryActivity extends AppCompatActivity {
 
         String wTime = sharedPreferences.getString("wakeUpTime", "");
         String sTime = sharedPreferences.getString("sleepTime","");
-        wakeUpAlarm = new MyAlarmManager(this, wTime, 0);
-        sleepAlarm = new MyAlarmManager(this, sTime, 1);
+        Constants.setWakeUpAlarm(new MyAlarmManager(this, "16:10", 0));
+        Constants.setSleepAlarm(new MyAlarmManager(this, sTime, 1));
 
     }//End of setUpAlarm
 
@@ -78,11 +78,10 @@ public class SummaryActivity extends AppCompatActivity {
 
     /**
      * Stänger av båda alarmen
-     */
     public static void stopAlarm(){
         wakeUpAlarm.stopAlarm();
         sleepAlarm.stopAlarm();
-    }//End of stopAlarm
+    }//End of stopAlarm*/
 
 
 

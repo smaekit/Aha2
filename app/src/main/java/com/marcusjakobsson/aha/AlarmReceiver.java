@@ -16,13 +16,13 @@ import android.util.Log;
 
 public class AlarmReceiver extends WakefulBroadcastReceiver
 {
-    private static Ringtone ringtone = null;
+    //private static Ringtone ringtone = null;
 
     @Override
     public void onReceive(Context context, Intent intent)
     {
         Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);//Sätter en URI till ett notisljud.
-        ringtone = RingtoneManager.getRingtone(context, uri);
+        Constants.setRingtone(RingtoneManager.getRingtone(context, uri));
         Log.i("RECEIVER", "RECEIVED!");
         Intent i = new Intent();
         i.setClassName("com.marcusjakobsson.aha", "com.marcusjakobsson.aha.AlertActivity");
@@ -33,11 +33,11 @@ public class AlarmReceiver extends WakefulBroadcastReceiver
 
 
     //Anropas för att stoppa ringsignalen utan att avbryta alarm.
-    public static void stopRingtone(){
+    /*public static void stopRingtone(){
         ringtone.stop();
     }
 
     //Anropas för att starta igång ringsignalen utan att avbryta alarmet.
-    public static void startRingtone() { ringtone.play(); }
+    public static void startRingtone() { ringtone.play(); }*/
 
 }//End AlarmReceiver

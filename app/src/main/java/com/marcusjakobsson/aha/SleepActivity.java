@@ -32,7 +32,7 @@ public class SleepActivity extends AppCompatActivity implements TimeTables{
         buttonNext = (Button) findViewById(R.id.button_next);
         buttonNext.setEnabled(false);
         sleepTimeTableListView = (ListView) findViewById(R.id.sleepTimeTableListView);
-        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        sharedPreferences = Constants.getSharedPreferences();
         savedPosition = sharedPreferences.getInt("sSavedP", -10);
 
 

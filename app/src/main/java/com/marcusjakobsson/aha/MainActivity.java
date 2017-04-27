@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        Constants.setSharedPreferences(this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE));
+        sharedPreferences = Constants.getSharedPreferences();
 
         ImageButton button_Speak = (ImageButton) findViewById(R.id.button_mic);
         RelativeLayout relativeLayout_main = (RelativeLayout) findViewById(R.id.relativeLayout_main);

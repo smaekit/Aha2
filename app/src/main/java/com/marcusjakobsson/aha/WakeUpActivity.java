@@ -32,7 +32,7 @@ public class WakeUpActivity extends AppCompatActivity implements TimeTables{
         buttonNext = (Button) findViewById(R.id.button_next);
         buttonNext.setEnabled(false);
         wakeUpTimeTableListView = (ListView) findViewById(R.id.wakeUpTimeTableListView);
-        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        sharedPreferences = Constants.getSharedPreferences();
         savedPosition = sharedPreferences.getInt("wSavedP", -10);
 
         createList();

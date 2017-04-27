@@ -1,6 +1,7 @@
 package com.marcusjakobsson.aha;
 
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -30,10 +31,10 @@ public class AlertActivity extends MyOBTBrushListener{
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        timerBrush = new CountDownTimer(halfHour, tenMin - 30*60*1000) {
+        timerBrush = new CountDownTimer(120000, 10000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                AlarmReceiver.startRingtone();
+                Constants.getRingtone().play();
             }
 
             @Override
@@ -42,7 +43,7 @@ public class AlertActivity extends MyOBTBrushListener{
             }
         };
 
-        timer = new CountDownTimer(hour, halfHour)
+        timer = new CountDownTimer(10000, 1000)
         {
 
             @Override
@@ -66,7 +67,7 @@ public class AlertActivity extends MyOBTBrushListener{
 
     private void stopAlarm()
     {
-        AlarmReceiver.stopRingtone();
+        Constants.getRingtone().stop();
         timer.cancel();
         timerBrush.cancel();
 
