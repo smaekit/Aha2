@@ -52,6 +52,7 @@
             android:name=".FinalActivity"
             android:label="@string/title_activity_final"
             android:showOnLockScreen="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:screenOrientation="portrait"/>
 
         <receiver android:name=".AlarmReceiver">
