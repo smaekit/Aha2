@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -31,29 +32,21 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
     //Variabler som behövs globalt
     private static final int RESULT_SPEECH = 1;
-    private ImageButton button_Speak;               //Mikrofon knappen
-    private RelativeLayout relativeLayout_main;     //för att kunna göra Bakgrunden klickbar
     private EditText editText_enterName;
     private ImageButton button_ok;
     private ImageButton button_erase;
     private SharedPreferences sharedPreferences;
-
-    //TODO: Starta på senaste skärm
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Constants.setSharedPreferences(this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE));
+        sharedPreferences = Constants.getSharedPreferences();
 
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        try {
-            OBTSDK.initialize(this);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        button_Speak = (ImageButton) findViewById(R.id.button_mic);
-        relativeLayout_main = (RelativeLayout)findViewById(R.id.relativeLayout_main);
+        ImageButton button_Speak = (ImageButton) findViewById(R.id.button_mic);
+        RelativeLayout relativeLayout_main = (RelativeLayout) findViewById(R.id.relativeLayout_main);
         relativeLayout_main.setOnClickListener(this);
         editText_enterName = (EditText)findViewById(R.id.editText_EnterName);
         editText_enterName.setOnKeyListener(this);
@@ -63,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //Skapar ett lokalt storage i appen.
-        sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         if(!name.equals(""))
         {
@@ -71,9 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             button_erase.setAlpha(1f);
             button_ok.setAlpha(1f);
         }
-
-
-
 
         //Ändrar transparens för button_OK/Erase när en korrekt input är inskrivet i namn rutan.
         editText_enterName.addTextChangedListener(new TextWatcher()
@@ -109,8 +98,6 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             }
         }); //End addTextChangedListener
 
-
-
         //När mikrofon knappen trycks ner så tillåter den användaren att prata in sitt namn
         button_Speak.setOnClickListener(new View.OnClickListener()
         {
@@ -136,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         });//End setOnClickListener
 
     } //End onCreate
+
+
 
 
     //RegEx för namn tar in ett namn som en sträng
@@ -240,6 +229,5 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
 
     @Override
     public void onBackPressed() {
-    }
-} //End MainActivity
+    }} //End MainActivity
 

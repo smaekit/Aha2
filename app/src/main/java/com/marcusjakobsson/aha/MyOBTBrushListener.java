@@ -1,6 +1,7 @@
 package com.marcusjakobsson.aha;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -74,6 +75,9 @@ public class MyOBTBrushListener extends AppCompatActivity implements OBTBrushLis
     @Override
     public void onBrushConnected() {
         Toast.makeText(this, "Tandborsten är ansluten", Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+        sharedPreferences.edit().putBoolean("crushHasConnected", true).apply();
+        FinalActivity.catStatus("CONNECTED");
         //TODO lägga till en datavy vid connect som visar pressure, tid, mode. Kan vara gömd i kattvyn
 
     }

@@ -1,10 +1,10 @@
 package com.marcusjakobsson.aha;
 
 import android.content.Intent;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -13,10 +13,11 @@ public class AlertActivity extends MyOBTBrushListener{
 
     private static CountDownTimer timer;
     private static CountDownTimer timerBrush;
-    private final long fifteenMin = 15*60*1000;
+    private final long tenMin = 15*60*1000;
     private final long halfHour = 30*60*1000;
+    private final long hour = 60*60*1000;
     private boolean doneBrushing = false;
-    private long validBrushingSession = 30;
+    private final long validBrushingSession = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,10 +31,10 @@ public class AlertActivity extends MyOBTBrushListener{
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED|
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        timerBrush = new CountDownTimer(120000, 10000) {
+        timerBrush = new CountDownTimer(halfHour, tenMin - 30*60*1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                AlarmReceiver.startRingtone();
+                Constants.getRingtone().play();
             }
 
             @Override
@@ -42,15 +43,13 @@ public class AlertActivity extends MyOBTBrushListener{
             }
         };
 
-        //30000 ms är en felmarginal för att det sista ticket ska låta
-        timer = new CountDownTimer(10000, 1000)
+        timer = new CountDownTimer(hour, halfHour)
         {
 
             @Override
             public void onTick(long millisUntilFinished) //Var 15:e minut kommer följande exekveras
             {
                 Log.i("TICK", "Tick "+millisUntilFinished);
-                //AlarmReceiver.startRingtone();
             } //Kan användas för att skriva ut varje tick
 
             public void onFinish() //När timern är färdig kommer följande exekveras
@@ -65,9 +64,9 @@ public class AlertActivity extends MyOBTBrushListener{
 
 
 
-    public void stopAlarm()
+    private void stopAlarm()
     {
-        AlarmReceiver.stopRingtone();
+        Constants.getRingtone().stop();
         timer.cancel();
         timerBrush.cancel();
 
@@ -86,7 +85,6 @@ public class AlertActivity extends MyOBTBrushListener{
         }else
         {
             Toast.makeText(this, "Du uppnådde inte den rekommenderade tandborstningstiden", Toast.LENGTH_LONG).show();
-            //TODO visa detta på skärmen.
         }
 
         //OBTSDK.authorizeApplication(userAuthListener);
@@ -105,13 +103,6 @@ public class AlertActivity extends MyOBTBrushListener{
 
     }
 
-
-
-    //Anropas när användaren trycker på tandborsten och kommer omdirigera användare till "sovande katt"-vyn
-    public void button_stopAlarm(View view)
-    {
-        stopAlarm();
-    }
 
 
 

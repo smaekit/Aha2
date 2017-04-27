@@ -2,8 +2,14 @@ package com.marcusjakobsson.aha;
 
 
 import android.content.Context;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,21 +33,12 @@ import java.util.ArrayList;
 
 public class FinalActivity extends MyOBTBrushListener{
 
-    //TODO: Vid fel under uppkoppling till ORAL-Bs SDK, visa felmeddelande till användare
-    //TODO: Erbjud möjligheten att försöka ansluta till ORAL-B på nytt
-
-
-    //TODO: Berätta för anv. att ansluta tandborste (Vy)
-    //TODO: Kolla om Wi-fi är på
-    //TODO: Kolla om Bluetooth är på
-    //TODO: Kolla om Tandborsten har kopplats, om den inte är så ska man via ett knapptryck koppla om och om igen
-    //TODO: Om tandborste har kopplats sen tidigare, stoppa scan och starta vid larm
-
     //TODO: Gå tillbaka till föregående vyer för att ändra tid osv.
 
-    MyOBTSdkAuthListener authListener;
-    AlertActivity alertActivity;
-    ImageView catImage;
+    private MyOBTSdkAuthListener authListener;
+    private AlertActivity alertActivity;
+    private SharedPreferences sharedPreferences;
+    private static ImageView catImage;
     private static ImageButton refreshButton;
 
     //private static String TAG = FinalActivity.class.getSimpleName();
@@ -72,6 +69,8 @@ public class FinalActivity extends MyOBTBrushListener{
         SharedPreferences sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         username.setText(name);
+
+        controlConnections();
 
         authListener = new MyOBTSdkAuthListener();
         alertActivity = new AlertActivity();
@@ -160,6 +159,31 @@ public class FinalActivity extends MyOBTBrushListener{
 
 
 
+    private void controlConnections() {
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (!mBluetoothAdapter.isEnabled()) {
+            mBluetoothAdapter.enable();
+        }
+
+        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
+
+        if(!(sharedPreferences.getBoolean("brushHasConnected", false))){
+            Log.i("Has Connected", "FIRST TIME");
+            catStatus("FIRST_TIME");
+        }
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        if (activeNetwork == null) { // connected to the internet
+            Intent intent = new Intent(WifiManager.ACTION_PICK_WIFI_NETWORK);
+            startActivity(intent);
+        }
+    }
+
+
+
+
     private void authorizeSDK()
     {
         OBTSDK.authorizeSdk(authListener);
@@ -182,6 +206,23 @@ public class FinalActivity extends MyOBTBrushListener{
 
 
 
+    public static void catStatus(String status){
+        switch (status){
+            case "FAILED":
+                catImage.setImageResource(R.drawable.cat_failed);
+                break;
+            case "FIRST_TIME":
+                catImage.setImageResource(R.drawable.cat_brush);
+                break;
+            default:
+                catImage.setImageResource(R.drawable.cat);
+                break;
+        }
+    }
+
+
+
+
     public void button_Refresh(View view)
     {
         OBTSDK.disconnectToothbrush();
@@ -190,11 +231,14 @@ public class FinalActivity extends MyOBTBrushListener{
 
 
 
-    public void button_back(View view){
+
+    /*public void button_back(View view){
         OBTSDK.disconnectToothbrush();
         Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
         startActivity(intent);
-    }
+    }*/
+
+
 
 
 

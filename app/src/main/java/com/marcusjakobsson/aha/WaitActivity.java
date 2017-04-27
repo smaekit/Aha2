@@ -1,22 +1,14 @@
 package com.marcusjakobsson.aha;
 
-import android.content.pm.PackageManager;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
-import android.icu.util.TimeZone;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.oralb.sdk.OBTCloudListener;
-import com.oralb.sdk.OBTSDK;
-import com.oralb.sdk.OBTSdkAuthorizationListener;
 import com.oralb.sdk.OBTSession;
 import com.oralb.sdk.OBTUserAuthorizationListener;
 
 import java.util.List;
-import java.util.Locale;
 
 public class WaitActivity extends AppCompatActivity implements OBTCloudListener{
     OBTUserAuthorizationListener userAuthListener;

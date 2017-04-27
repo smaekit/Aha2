@@ -6,7 +6,7 @@
     <string name="next">Nästa</string>
     <string name="back">Tillbaka</string>
     <string name="title_activity_sleep">SleepActivity</string>
-    <string name="SleepTime">Välj en tid då du går och lägger dig</string>
+    <string name="SleepTime">När går du och lägger dig?</string>
     <string name="title_activity_summary">SummaryActivity</string>
     <string name="summary">Detta är din sammanfattning:</string>
     <string name="name">NAMN:</string>
@@ -26,4 +26,7 @@
     <string name="anslut_till_tandborste">ANSLUT TILL TANDBORSTE</string>
     <string name="drawer_open">öppen</string>
     <string name="drawer_close">Stängd</string>
+    <string name="brush_description">En bild på en tandborste som indikerar att du bör borsta tänderna.</string>
+    <string name="refresh_description">En roterande pil som vid knapptryck kommer försöka koppla upp till tandborste på nytt.</string>
+    <string name="sleeping_description">Söt katt som väntar på att du ska borsta tänderna snart.</string>
 </resources>

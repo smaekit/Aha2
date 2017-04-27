@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * till en textView
  */
 
-public class CustomAdapter extends BaseAdapter{
+class CustomAdapter extends BaseAdapter{
 
     private final Context context;
     private final ArrayList<TextView> testList;

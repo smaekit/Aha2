@@ -1,6 +1,5 @@
 package com.marcusjakobsson.aha;
 import android.util.Log;
-import android.widget.ImageButton;
 
 import com.oralb.sdk.OBTSDK;
 import com.oralb.sdk.OBTSdkAuthorizationListener;
@@ -9,7 +8,7 @@ import com.oralb.sdk.OBTSdkAuthorizationListener;
  * Created by konstantin_ay on 2017-04-25.
  */
 
-public class MyOBTSdkAuthListener implements OBTSdkAuthorizationListener{
+class MyOBTSdkAuthListener implements OBTSdkAuthorizationListener{
 
     @Override
     public void onSdkAuthorizationSuccess() {
@@ -29,7 +28,7 @@ public class MyOBTSdkAuthListener implements OBTSdkAuthorizationListener{
     @Override
     public void onSdkAuthorizationFailed(int i) {
         FinalActivity.showButton();
-
-        Log.i("MyOBTSdkAuthListener", "failed"+i);
+        FinalActivity.catStatus("FAILED");
+        Log.i("MyOBTSdkAuthListener", "failed "+i);
     }
 }

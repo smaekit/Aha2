@@ -11,6 +11,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_margin="30dp"
+        android:contentDescription="@string/sleeping_description"
         app:srcCompat="@drawable/sleep" />
 
 </RelativeLayout>
