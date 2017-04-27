@@ -166,8 +166,6 @@ public class FinalActivity extends MyOBTBrushListener{
             mBluetoothAdapter.enable();
         }
 
-        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
-
         if(!(sharedPreferences.getBoolean("brushHasConnected", false))){
             Log.i("Has Connected", "FIRST TIME");
             catStatus("FIRST_TIME");
