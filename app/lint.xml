@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="IconLocation">
+        <ignore path="src/main/res/drawable/cancel.png" />
+        <ignore path="src/main/res/drawable/cat.png" />
+        <ignore path="src/main/res/drawable/cat_brush.png" />
+        <ignore path="src/main/res/drawable/cat_failed.png" />
+        <ignore path="src/main/res/drawable/checked.png" />
+        <ignore path="src/main/res/drawable/evening.png" />
+        <ignore path="src/main/res/drawable/logo.png" />
+        <ignore path="src/main/res/drawable/microphone.png" />
+        <ignore path="src/main/res/drawable/morning.jpg" />
+        <ignore path="src/main/res/drawable/play.png" />
+        <ignore path="src/main/res/drawable/refresh.png" />
+        <ignore path="src/main/res/drawable/sleep.png" />
+        <ignore path="src/main/res/drawable/slide1_brush.png" />
+    </issue>
+</lint>

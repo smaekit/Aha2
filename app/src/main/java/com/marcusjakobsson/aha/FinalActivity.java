@@ -3,7 +3,6 @@ package com.marcusjakobsson.aha;
 
 import android.content.Context;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences;
@@ -79,7 +78,7 @@ public class FinalActivity extends MyOBTBrushListener{
         refreshButton = (ImageButton)findViewById(R.id.button_refresh);
 
         TextView username = (TextView)findViewById(R.id.userName);
-        SharedPreferences sharedPreferences = this.getSharedPreferences(getPackageName(), Context.MODE_PRIVATE);
+        sharedPreferences = Constants.getSharedPreferences();
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         username.setText(name);
 
@@ -88,8 +87,8 @@ public class FinalActivity extends MyOBTBrushListener{
         authListener = new MyOBTSdkAuthListener();
         alertActivity = new AlertActivity();
 
-        mNavItems.add(new NavItem("Vaknar", "Ändra tiden när du vaknar", R.drawable.cancel));
-        mNavItems.add(new NavItem("Sover", "Ändra tiden du går och lägger dig", R.drawable.checked));
+        mNavItems.add(new NavItem("Vaknar", "Ändra tiden när du vaknar", R.drawable.sun));
+        mNavItems.add(new NavItem("Sover", "Ändra tiden du går och lägger dig", R.drawable.moon));
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -155,15 +154,18 @@ public class FinalActivity extends MyOBTBrushListener{
     private void selectItemFromDrawer(int position) {
 
         mDrawerList.setItemChecked(position, true);
-
         // Close the drawer
         //mDrawerLayout.closeDrawer(mDrawerPane);
         if (position == 0)
         {
+            Constants.getSleepAlarm().stopAlarm();
+            Constants.getWakeUpAlarm().stopAlarm();
             Intent intent = new Intent(getApplicationContext(), WakeUpActivity.class);
             startActivity(intent);
         }else if(position == 1)
         {
+            Constants.getSleepAlarm().stopAlarm();
+            Constants.getWakeUpAlarm().stopAlarm();
             Intent intent = new Intent(getApplicationContext(), SleepActivity.class);
             startActivity(intent);
         }
@@ -177,8 +179,6 @@ public class FinalActivity extends MyOBTBrushListener{
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
         }*/
-
-        sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
 
         if(!(sharedPreferences.getBoolean("brushHasConnected", false))){
             Log.i("Has Connected", "FIRST TIME");
