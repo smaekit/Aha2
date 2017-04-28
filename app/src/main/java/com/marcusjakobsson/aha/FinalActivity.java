@@ -64,7 +64,7 @@ public class FinalActivity extends MyOBTBrushListener{
         myToolbar.post(new Runnable() {
             @Override
             public void run() {
-                Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.hamburgare, null);
+                Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.bars, null);
                 myToolbar.setNavigationIcon(d);
             }
         });
@@ -87,8 +87,8 @@ public class FinalActivity extends MyOBTBrushListener{
         authListener = new MyOBTSdkAuthListener();
         alertActivity = new AlertActivity();
 
-        mNavItems.add(new NavItem("Vaknar", "Ändra tiden när du vaknar", R.drawable.sun));
-        mNavItems.add(new NavItem("Sover", "Ändra tiden du går och lägger dig", R.drawable.moon));
+        mNavItems.add(new NavItem("Vaknar "+Constants.getSharedPreferences().getString("wakeUpTime", ""), "Ändra tiden när du vaknar", R.drawable.sun));
+        mNavItems.add(new NavItem("Sover "+Constants.getSharedPreferences().getString("sleepTime", ""), "Ändra tiden du går och lägger dig", R.drawable.moon));
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -175,10 +175,10 @@ public class FinalActivity extends MyOBTBrushListener{
 
 
     private void controlConnections() {
-        /*BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
-        }*/
+        }
 
         if(!(sharedPreferences.getBoolean("brushHasConnected", false))){
             Log.i("Has Connected", "FIRST TIME");

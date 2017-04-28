@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Aha</string>
     <string name="speak" />
-    <string name="wakeUpTime">Välj en tid då du vaknar på morgonen</string>
+    <string name="wakeUpTime">När vaknar du på morgonen?</string>
     <string name="enterName">Skriv in ditt namn!</string>
     <string name="next">Nästa</string>
     <string name="back">Tillbaka</string>
@@ -29,4 +29,5 @@
     <string name="brush_description">En bild på en tandborste som indikerar att du bör borsta tänderna.</string>
     <string name="refresh_description">En roterande pil som vid knapptryck kommer försöka koppla upp till tandborste på nytt.</string>
     <string name="sleeping_description">Söt katt som väntar på att du ska borsta tänderna snart.</string>
+    <string name="settings">Här kan du ändra dina inställningar</string>
 </resources>
