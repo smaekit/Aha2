@@ -40,8 +40,8 @@ public class MyOBTBrushListener extends AppCompatActivity implements OBTBrushLis
 
     @Override
     public void onNearbyBrushesFoundOrUpdated(List<OBTBrush> nearbyBrushes) {
-        Log.i("found brush", "" + nearbyBrushes.size());
-        Toast.makeText(this, "Found a brush!", Toast.LENGTH_SHORT).show();
+        Log.i("Found brush", "" + nearbyBrushes.size());
+        //Toast.makeText(this, "Found a brush!", Toast.LENGTH_SHORT).show();
         if (!nearbyBrushes.isEmpty()){
             // Connect to first Oral-B Toothbrush
             try{
@@ -51,7 +51,7 @@ public class MyOBTBrushListener extends AppCompatActivity implements OBTBrushLis
             }
             catch(Exception e)
             {
-                Toast.makeText(this, "Kunde inte ansluta tandborsten!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Kunde inte ansluta tandborsten!", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -61,23 +61,23 @@ public class MyOBTBrushListener extends AppCompatActivity implements OBTBrushLis
     @Override
     public void onBluetoothError() {
         Toast.makeText(this, "Ett bluetooth problem uppstod, var vänlig starta om bluetooth och försök igen", Toast.LENGTH_LONG).show();
-
-
+        FinalActivity.catStatus("FAILED");
+        FinalActivity.showButton();
     }
 
     @Override
     public void onBrushDisconnected() {
         Log.i("BRUSH", "Brush disconnected");
         //OBTSDK.authorizeApplication(userAuthListener);
-
     }
 
     @Override
     public void onBrushConnected() {
         Toast.makeText(this, "Tandborsten är ansluten", Toast.LENGTH_SHORT).show();
-        SharedPreferences sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
-        sharedPreferences.edit().putBoolean("crushHasConnected", true).apply();
+        SharedPreferences sharedPreferences = Constants.getSharedPreferences();
+        sharedPreferences.edit().putBoolean("brushHasConnected", true).apply();
         FinalActivity.catStatus("CONNECTED");
+        FinalActivity.hideButton();
         //TODO lägga till en datavy vid connect som visar pressure, tid, mode. Kan vara gömd i kattvyn
 
     }
@@ -90,7 +90,6 @@ public class MyOBTBrushListener extends AppCompatActivity implements OBTBrushLis
     @Override
     public void onBrushingTimeChanged(long l) {
         Log.i("TIME", String.valueOf(l/1000));
-
     }
 
     @Override

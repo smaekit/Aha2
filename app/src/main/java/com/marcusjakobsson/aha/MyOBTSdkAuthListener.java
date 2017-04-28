@@ -14,8 +14,6 @@ class MyOBTSdkAuthListener implements OBTSdkAuthorizationListener{
     public void onSdkAuthorizationSuccess() {
         Log.i("MyOBTSdkAuthListener", "success");
 
-        FinalActivity.hideButton();
-
         try {
             OBTSDK.startScanning();
             Log.i("Scan", "Scanning...");

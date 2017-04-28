@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
             button_ok.setAlpha(1f);
         }
 
+        if(!Constants.isInitialized())
+            initializeSDK();
+
         //Ändrar transparens för button_OK/Erase när en korrekt input är inskrivet i namn rutan.
         editText_enterName.addTextChangedListener(new TextWatcher()
         {
@@ -123,6 +126,20 @@ public class MainActivity extends AppCompatActivity implements View.OnKeyListene
         });//End setOnClickListener
 
     } //End onCreate
+
+
+
+
+    private void initializeSDK() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
+        try {
+            OBTSDK.initialize(this);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        Constants.setInitialized(true);
+    }
 
 
 

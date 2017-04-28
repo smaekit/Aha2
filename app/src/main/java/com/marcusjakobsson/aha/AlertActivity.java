@@ -78,7 +78,7 @@ public class AlertActivity extends MyOBTBrushListener{
 
     @Override
     public void onBrushDisconnected() {
-        Log.i("BRUSH", "Brush disconnected");
+        //Log.i("BRUSH", "Brush disconnected");
         if(doneBrushing)
         {
             stopAlarm();

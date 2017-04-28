@@ -34,15 +34,10 @@ import java.util.ArrayList;
 
 public class FinalActivity extends MyOBTBrushListener{
 
-    //TODO: Gå tillbaka till föregående vyer för att ändra tid osv.
-
     private MyOBTSdkAuthListener authListener;
-    private AlertActivity alertActivity;
     private SharedPreferences sharedPreferences;
     private static ImageView catImage;
     private static ImageButton refreshButton;
-
-    //private static String TAG = FinalActivity.class.getSimpleName();
 
     ListView mDrawerList;
     RelativeLayout mDrawerPane;
@@ -50,7 +45,7 @@ public class FinalActivity extends MyOBTBrushListener{
     private DrawerLayout mDrawerLayout;
     Toolbar myToolbar;
 
-    ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
+    ArrayList<NavItem> mNavItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -59,7 +54,31 @@ public class FinalActivity extends MyOBTBrushListener{
         setContentView(R.layout.activity_final);
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        catImage = (ImageView)findViewById(R.id.cat_image);
+        refreshButton = (ImageButton)findViewById(R.id.button_refresh);
+        sharedPreferences = Constants.getSharedPreferences();
         setSupportActionBar(myToolbar);
+
+        initiateMenu();
+
+
+        if(!(sharedPreferences.getBoolean("brushHasConnected", false))){
+            Log.i("Has Connected", "FIRST TIME");
+            catStatus("FIRST_TIME");
+        }
+
+        controlConnections();
+
+        authListener = new MyOBTSdkAuthListener();
+
+        authorizeSDK();
+    } //End onCreate
+
+
+
+
+    private void initiateMenu() {
+        TextView username = (TextView)findViewById(R.id.userName);
 
         myToolbar.post(new Runnable() {
             @Override
@@ -69,26 +88,13 @@ public class FinalActivity extends MyOBTBrushListener{
             }
         });
 
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
-        catImage = (ImageView)findViewById(R.id.cat_image);
-        refreshButton = (ImageButton)findViewById(R.id.button_refresh);
-
-        TextView username = (TextView)findViewById(R.id.userName);
-        sharedPreferences = Constants.getSharedPreferences();
         String name = sharedPreferences.getString("name", ""); //finns inget värde att hämta blir det default värde ""
         username.setText(name);
 
-        controlConnections();
-
-        authListener = new MyOBTSdkAuthListener();
-        alertActivity = new AlertActivity();
-
-        mNavItems.add(new NavItem("Vaknar "+Constants.getSharedPreferences().getString("wakeUpTime", ""), "Ändra tiden när du vaknar", R.drawable.sun));
-        mNavItems.add(new NavItem("Sover "+Constants.getSharedPreferences().getString("sleepTime", ""), "Ändra tiden du går och lägger dig", R.drawable.moon));
+        mNavItems.add(new NavItem("Vaknar "+sharedPreferences.getString("wakeUpTime", ""), "Ändra tiden när du vaknar", R.drawable.sun));
+        mNavItems.add(new NavItem("Sover "+sharedPreferences.getString("sleepTime", ""), "Ändra tiden du går och lägger dig", R.drawable.moon));
 
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -125,31 +131,10 @@ public class FinalActivity extends MyOBTBrushListener{
         };
 
         mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
-
-
-        //Call to initialize the OBTSDK
-        Log.i("main", "OBT SDK initialized");
-        authorizeSDK();
-    } //End onCreate
+    }//End of initiateMenu
 
 
 
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Pass the event to ActionBarDrawerToggle
-        // If it returns true, then it has handled
-        // the nav drawer indicator touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        // Handle your other action bar items...
-
-        return super.onOptionsItemSelected(item);
-    }
 
     private void selectItemFromDrawer(int position) {
 
@@ -178,11 +163,6 @@ public class FinalActivity extends MyOBTBrushListener{
         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
-        }
-
-        if(!(sharedPreferences.getBoolean("brushHasConnected", false))){
-            Log.i("Has Connected", "FIRST TIME");
-            catStatus("FIRST_TIME");
         }
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
@@ -238,20 +218,10 @@ public class FinalActivity extends MyOBTBrushListener{
 
     public void button_Refresh(View view)
     {
-        OBTSDK.disconnectToothbrush();
+        OBTSDK.disableBluetooth();
+        OBTSDK.enableBluetooth();
         authorizeSDK();
     }
-
-
-
-
-    /*public void button_back(View view){
-        OBTSDK.disconnectToothbrush();
-        Intent intent = new Intent(getApplicationContext(),SummaryActivity.class);
-        startActivity(intent);
-    }*/
-
-
 
 
 
@@ -320,7 +290,4 @@ public class FinalActivity extends MyOBTBrushListener{
             return view;
         }
     }
-
-
-
 } //End FinalActivity

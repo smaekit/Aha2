@@ -65,10 +65,6 @@
             android:label="@string/title_activity_alert"
             android:showOnLockScreen="true"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".WaitActivity"
-            android:label="@string/title_activity_wait"
-            android:screenOrientation="portrait"/>
         <activity android:name=".MyOBTBrushListener" />
     </application>
 

@@ -49,24 +49,7 @@ public class SummaryActivity extends AppCompatActivity {
     public void button_next(View view)
     {
         setUpAlarm();
-
-        if(!Constants.isInitialized())
-            initializeSDK();
     }//End of button_next
-
-
-
-
-    private void initializeSDK() {
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-
-        try {
-            OBTSDK.initialize(this);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        Constants.setInitialized(true);
-    }
 
 
 
@@ -82,16 +65,6 @@ public class SummaryActivity extends AppCompatActivity {
         Constants.setSleepAlarm(new MyAlarmManager(this, sTime, 1));
 
     }//End of setUpAlarm
-
-
-
-
-    /**
-     * Stänger av båda alarmen
-    public static void stopAlarm(){
-        wakeUpAlarm.stopAlarm();
-        sleepAlarm.stopAlarm();
-    }//End of stopAlarm*/
 
 
 
