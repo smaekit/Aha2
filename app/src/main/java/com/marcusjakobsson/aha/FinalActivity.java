@@ -7,10 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -47,6 +49,7 @@ public class FinalActivity extends MyOBTBrushListener{
     RelativeLayout mDrawerPane;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    Toolbar myToolbar;
 
     ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
 
@@ -56,11 +59,21 @@ public class FinalActivity extends MyOBTBrushListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        myToolbar.post(new Runnable() {
+            @Override
+            public void run() {
+                Drawable d = ResourcesCompat.getDrawable(getResources(), R.drawable.hamburgare, null);
+                myToolbar.setNavigationIcon(d);
+            }
+        });
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         catImage = (ImageView)findViewById(R.id.cat_image);
         refreshButton = (ImageButton)findViewById(R.id.button_refresh);
@@ -107,13 +120,13 @@ public class FinalActivity extends MyOBTBrushListener{
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-                //Log.d(TAG, "onDrawerClosed: " + getTitle());
 
                 invalidateOptionsMenu();
             }
         };
 
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.syncState();
 
 
         //Call to initialize the OBTSDK
@@ -160,10 +173,10 @@ public class FinalActivity extends MyOBTBrushListener{
 
 
     private void controlConnections() {
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        /*BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (!mBluetoothAdapter.isEnabled()) {
             mBluetoothAdapter.enable();
-        }
+        }*/
 
         sharedPreferences = this.getSharedPreferences("com.marcusjakobsson.aha", Context.MODE_PRIVATE);
 

@@ -23,11 +23,11 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/my_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 android:background="@color/colorDisco"
                 android:elevation="4dp"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                android:theme="@style/AppBarOverlay"
+                app:popupTheme="@style/AppBarOverlay"/>
 
             <ImageView
                 android:id="@+id/cat_image"
@@ -36,6 +36,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="30dp"
+                android:layout_marginTop="100dp"
                 android:contentDescription="@string/everythingWorks"
                 android:paddingTop="90dp"
                 app:srcCompat="@drawable/cat" />
