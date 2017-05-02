@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/evening_background">
+    android:layout_height="match_parent">
+    <!--android:background="@drawable/evening_background">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -12,14 +12,14 @@
         android:layout_centerVertical="true"
         android:layout_margin="30dp"
         android:contentDescription="@string/sleeping_description"
-        app:srcCompat="@drawable/sleep" />
+        app:srcCompat="@drawable/sleep" />-->
 
-    <!--<pl.droidsonroids.gif.GifTextView
+    <pl.droidsonroids.gif.GifTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/splashscreen"
-        />-->
+        android:background="@drawable/wait_flash"
+        />
 
 </RelativeLayout>
