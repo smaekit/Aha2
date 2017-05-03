@@ -30,4 +30,7 @@
     <string name="refresh_description">En roterande pil som vid knapptryck kommer försöka koppla upp till tandborste på nytt.</string>
     <string name="sleeping_description">Söt katt som väntar på att du ska borsta tänderna snart.</string>
     <string name="settings">Här kan du ändra dina inställningar</string>
+    <string name="userInfo">Användarens inställningar</string>
+    <string name="line">Line 1</string>
+    <string name="line2">Line 2</string>
 </resources>

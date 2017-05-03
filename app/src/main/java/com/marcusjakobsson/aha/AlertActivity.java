@@ -1,7 +1,6 @@
 package com.marcusjakobsson.aha;
 
 import android.content.Intent;
-import android.drm.DrmStore;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
