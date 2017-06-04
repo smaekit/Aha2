@@ -56,7 +56,7 @@ public class SummaryActivity extends AppCompatActivity {
 
         String wTime = sharedPreferences.getString("wakeUpTime", "");
         String sTime = sharedPreferences.getString("sleepTime","");
-        Constants.setWakeUpAlarm(new MyAlarmManager(this, "16:13", 0));
+        Constants.setWakeUpAlarm(new MyAlarmManager(this, wTime, 0));
         Constants.setSleepAlarm(new MyAlarmManager(this, sTime, 1));
 
     }//End of setUpAlarm

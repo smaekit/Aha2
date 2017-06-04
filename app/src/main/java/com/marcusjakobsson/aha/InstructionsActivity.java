@@ -37,7 +37,7 @@ public class InstructionsActivity extends AppCompatActivity
     private void initiateVideoPlayer()
     {
         videoV = (VideoView)findViewById(R.id.videoView);
-        videoV.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.recording);
+        videoV.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.info);
 
         MediaController mediaController = new MediaController(this);
         videoV.setMediaController(mediaController);
